@@ -1,13 +1,22 @@
 export const validate = (type, value) => {
     switch (type) {
         case "name":
+        case "first_name":
         case "nombre":
+        case "imie":
+        case "imię":
         case "surname":
+        case "last_name":
+        case "apellido":
+        case "apellidos":
+        case "primer_apellido":
+        case "segundo_apellido":
+        case "nazwisko":
+        case "nazwiska":
         case "cognom":
-            if (value.length < 3) {
-                return "Por favor, el nombre debe de tener mínimo tres caracteres.";
+            if (value.length < 2) {
+                return "Name should be at least 2 characters long.";
             }
-
             return "";
 
         case "email":
@@ -17,20 +26,21 @@ export const validate = (type, value) => {
             const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
             if (!emailRegex.test(value)) {
-                return "Por favor, el formato del email debe de ser correcto.";
+                return "Email should have a correct format.";
             }
-
             return "";
 
         case "password":
         case "contraseña":
+        case "pass":
+        case "haslo":
+        case "hasło":
             const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,14}$/;
             if (!passwordRegex.test(value)) {
-                return "El password debe tener 8 caracteres, simbolo y mayúscula";
+                return "Password should have at least one big letter, one small letter, one number and have between 8 and 14 characters";
             }
-
             return "";
         default:
-            console.log("whattttttttttt???");
+            console.log("ALL SEEMS LEGIT");
     }
 };
