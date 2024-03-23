@@ -1,0 +1,11 @@
+.footerDesign {
+
+    height: 6vh;
+    width: 100vw;
+
+    background-color: lightskyblue;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,9 @@
+.registerDesign {
+    height: 84vh;
+    width: 100vw;
+    background-color: lightsalmon;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

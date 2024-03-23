@@ -1,0 +1,13 @@
+.linkDesign {
+    font-weight: bold;
+    color: black;
+
+    margin: 1em;
+    transition: 0.5s;
+}
+
+.linkDesign:hover {
+    cursor: pointer;
+    transition: 0.5s;
+    color: gray;
+}
