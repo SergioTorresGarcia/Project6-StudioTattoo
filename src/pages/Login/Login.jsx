@@ -69,12 +69,11 @@ export const Login = () => {
                 token: fetched.token,
                 decodificado: decodificado,
             };
-            console.log(passport);
 
             localStorage.setItem("passport", JSON.stringify(passport));
-            console.log(passport);
+
             setMsgError(
-                `Hi there ${decodificado.userName}, welcome to our site`
+                `Hi ${decodificado.userName}, welcome to our site`
             );
 
             setTimeout(() => {
