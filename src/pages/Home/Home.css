@@ -1,7 +1,7 @@
 .homeDesign {
     height: 84vh;
     width: 100vw;
-    background-color: lightgreen;
+    background-color: lightgray;
 
     display: flex;
     flex-direction: column;

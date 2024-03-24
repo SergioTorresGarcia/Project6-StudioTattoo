@@ -1,14 +1,14 @@
 
 import './App.css'
 import { Footer } from './common/Footer/Footer'
-import { Header } from './common/Header/Header'
+// import { Header } from './common/Header/Header'
 import { Body } from './pages/body/Body'
 
 function App() {
 
   return (
     <>
-      <Header />
+      {/* <Header/> */}
       <Body />
       <Footer />
     </>

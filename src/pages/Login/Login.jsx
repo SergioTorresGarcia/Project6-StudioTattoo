@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import "./Login.css"
-import validate from "../../utils/functions"
-
+import { validate } from "../../utils/functions"
 import { CInput } from "../../common/CInput/CInput";
 import { CButton } from "../../common/CButton/CButton";
+
 import { LoginUser } from "../../services/apiCalls";
 import { decodeToken } from "react-jwt";
 import { Header } from "../../common/Header/Header";
@@ -14,6 +14,7 @@ import { Header } from "../../common/Header/Header";
 export const Login = () => {
     const datosUser = JSON.parse(localStorage.getItem("passport"));
     const navigate = useNavigate();
+
     const [tokenStorage, setTokenStorage] = useState(datosUser?.token);
 
     const [credenciales, setCredenciales] = useState({
@@ -49,7 +50,6 @@ export const Login = () => {
         setCredencialesError((prevState) => ({
             ...prevState,
             [e.target.name + "Error"]: error,
-            //el truco del almendruco nos dice que seria... nameError: error, o emailError: error
         }));
     };
 
@@ -58,23 +58,23 @@ export const Login = () => {
         try {
             for (let elemento in credenciales) {
                 if (credenciales[elemento] === "") {
-                    throw new Error("Todos los campos tienen que estar rellenos");
+                    throw new Error("All fields are required");
                 }
             }
-
+            console.log("credenciales", credenciales);
             const fetched = await LoginUser(credenciales);
-
             const decodificado = decodeToken(fetched.token);
 
             const passport = {
                 token: fetched.token,
                 decodificado: decodificado,
             };
+            console.log(passport);
 
             localStorage.setItem("passport", JSON.stringify(passport));
-
+            console.log(passport);
             setMsgError(
-                `Hola ${decodificado.name}, bienvenido de nuevo a este infierno`
+                `Hi there ${decodificado.userName}, welcome to our site`
             );
 
             setTimeout(() => {
