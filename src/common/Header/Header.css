@@ -1,11 +1,19 @@
 .headerDesign {
 
-    height: 10vh;
+    height: 7.5vh;
     width: 100vw;
 
-    background-color: gainsboro;
+    background-color: lightgray;
+    border-bottom: 0.5em solid gainsboro;
 
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
     align-items: flex-end;
+}
+
+.authMenu {
+    display: flex;
+    flex-direction: row;
+
 }

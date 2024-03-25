@@ -1,0 +1,19 @@
+.navigatorDesign {
+    color: darkgrey;
+    font-weight: bold;
+
+    transition: 0.2s;
+    margin: 1em;
+}
+
+.btn:hover {
+    background-color: gainsboro;
+}
+
+.navigatorDesign:hover,
+.active {
+
+    color: teal;
+    transition: 0.2s;
+    cursor: pointer;
+}

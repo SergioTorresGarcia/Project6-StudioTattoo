@@ -3,7 +3,8 @@
     height: 6vh;
     width: 100vw;
 
-    background-color: gainsboro;
+    background-color: lightgray;
+    color: gray;
 
     display: flex;
     justify-content: center;

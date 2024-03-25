@@ -17,12 +17,14 @@ export const Register = () => {
     const [user, setUser] = useState({
         first_name: "",
         last_name: "",
+        birth_date: "",
         email: "",
         password: "",
     });
 
     const [userError, setUserError] = useState({
         nameError: "",
+        dateError: "",
         emailError: "",
         passwordError: "",
     });
@@ -94,6 +96,17 @@ export const Register = () => {
                     onBlurFunction={(e) => checkError(e)}
                 />
                 <div className="error">{userError.nameError}</div>
+                <CInput
+                    className={`inputDesign ${userError.dateError !== "" ? "inputDesignError" : ""
+                        }`}
+                    type={"text"}
+                    placeholder={"birth date"}
+                    name={"birth_date"}
+                    value={user.birth_date || ""}
+                    onChangeFunction={(e) => inputHandler(e)}
+                    onBlurFunction={(e) => checkError(e)}
+                />
+                <div className="error">{userError.dateError}</div>
                 <CInput
                     className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""
                         }`}

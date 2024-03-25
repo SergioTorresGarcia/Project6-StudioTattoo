@@ -1,7 +1,8 @@
-.loginDesign {
+.profileDesign {
+
     height: 86.5vh;
     width: 100vw;
-    background-color: lightgrey;
+    background-color: lightgray;
 
     display: flex;
     flex-direction: column;

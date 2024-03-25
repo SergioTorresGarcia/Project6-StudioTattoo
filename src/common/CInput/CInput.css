@@ -1,12 +1,23 @@
 .inputDesign {
     height: 3em;
-    width: 18em;
+    width: 25em;
 
-    border: 0.2em solid black;
+    border: 0.02em solid teal;
     border-radius: 0.5em;
+    background-color: lightgrey;
+    padding-left: 1em;
     margin: 1em;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.inputDesign:active {
+    background-color: gainsboro;
 }
 
 .inputDesignError {
-    border: 0.2em solid red;
+    border: 0.02em solid darkred;
+    background-color: gainsboro;
 }

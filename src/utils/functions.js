@@ -2,11 +2,13 @@ export const validate = (type, value) => {
     switch (type) {
         case "name":
         case "first_name":
+        case "firstName":
         case "nombre":
         case "imie":
         case "imię":
         case "surname":
         case "last_name":
+        case "lastName":
         case "apellido":
         case "apellidos":
         case "primer_apellido":

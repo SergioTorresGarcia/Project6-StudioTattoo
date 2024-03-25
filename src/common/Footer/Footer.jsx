@@ -5,7 +5,7 @@ export const Footer = () => {
 
     return (
         <div className="footerDesign">
-            Soy el footer
+            STG_03/2024 © FSD bootcamp by GeeksHubs
         </div>
     )
 }
