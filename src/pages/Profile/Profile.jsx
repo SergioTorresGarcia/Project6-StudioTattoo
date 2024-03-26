@@ -52,11 +52,9 @@ export const Profile = () => {
         const getUserProfile = async () => {
             try {
                 const fetched = await GetProfile(tokenStorage);
-
                 setLoadedData(true);
 
                 const parsedBirth = dayjs(fetched.data.birthDate).format("YYYY-MM-DD");
-
                 setUser({
                     firstName: fetched.data.firstName,
                     lastName: fetched.data.lastName,
@@ -75,65 +73,22 @@ export const Profile = () => {
     }, [user]);
 
 
-    // const updateData = async () => {
-    //     try {
-    //         await UpdateProfile(tokenStorage, user);
-    //         const updatedProfile = await GetProfile();
-    //         // Update the state with the updated profile data
-    //         // setUser(updatedProfile);
-    //         // setUser({
-    //         //     firstName: updatedProfile.data.firstName,
-    //         //     lastName: updatedProfile.data.lastName,
-    //         //     birthDate: updatedProfile.data.birthDate,
-    //         //     email: updatedProfile.data.email
-    //         // });
-
-    //         setWrite("disabled");
-    //     } catch (error) {
-    //         console.error('Error updating profile:', error);
-    //     }
-    // };
-
-
-    // const updateData = async () => {
-    //     try {
-    //         const fetched = await UpdateProfile(tokenStorage, user)
-    //         console.log("fetched", fetched);
-    //         setUser({
-    //             firstName: fetched.data.firstName,
-    //             lastName: fetched.data.lastName,
-    //             birthDate: fetched.data.birthDate,
-    //             email: fetched.data.email
-    //         })
-
-    //         setWrite("disabled")
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
-    // const updateData = async () => {
-    //     try {
-    //         const updatedData = await UpdateProfile(tokenStorage, user);
-
-    //         setUser(updatedData);
-    //         setWrite("disabled");
-    //     } catch (error) {
-    //         console.error('Error updating profile:', error);
-    //     }
-    // };
     const updateData = async () => {
         try {
-            const fetched = await UpdateProfile(tokenStorage, user);
+            //data needs to be prepared to be updated (if not we pass an object from the body)
+            const userData = {
+                firstName: user.firstName,
+                lastName: user.lastName,
+                birthDate: user.birthDate,
+                email: user.email
+            };
 
-            setUser(fetched);
-
+            setUser(userData);
             setWrite("disabled");
         } catch (error) {
-            console.log(error)
+            throw new Error('Updating data failed: ' + error.message);
         }
-    }
-
+    };
 
     return (
         <>
@@ -184,7 +139,7 @@ export const Profile = () => {
                             onBlurFunction={(e) => checkError(e)}
                         />
                         <CButton
-                            className={write === "" ? "cButtonGreen cButtonDesign" : "cButtonDesign"}
+                            className={write === "" ? "cButtonDesign cButtonGreen" : "cButtonDesign"}
                             title={write === "" ? "Confirm" : "Edit"}
                             functionEmit={write === "" ? updateData : () => setWrite("")}
                         />
@@ -194,3 +149,4 @@ export const Profile = () => {
         </>
     );
 };
+

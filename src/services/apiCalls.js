@@ -95,26 +95,27 @@ export const GetProfile = async (token) => {
 };
 
 
-export const UpdateProfile = async (token, requestData) => {
+export const UpdateProfile = async (token, data) => {
     const options = {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify(requestData)
+        body: JSON.stringify(data)
     };
-
+    console.log("data", data);
     try {
         const response = await fetch(`${root}users/self`, options);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-
+        console.log(response);
         const data = await response.json();
         if (!data.success) {
             throw new Error(data.message);
         }
+        console.log(data);
         return data;
     } catch (error) {
         throw new Error('Update profile failed: ' + error.message);
