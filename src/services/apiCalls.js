@@ -121,3 +121,52 @@ export const UpdateProfile = async (token, data) => {
         throw new Error('Update profile failed: ' + error.message);
     }
 };
+
+
+export const GetAppointments = async (token) => {
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    };
+
+    try {
+        const response = await fetch(`${root}appointments/profile`, options);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+
+        return data;
+    } catch (error) {
+        throw new Error('Get appointments failed: ' + error.message);
+    }
+};
+
+// export const GetAppointments = async (token) => {
+//     try {
+//         // Adjust the URL as per your backend API endpoint
+//         const response = await fetch(`${root}appointments/profile`, {
+//             method: 'GET',
+//             headers: {
+//                 'Authorization': `Bearer ${token}`, // Assuming token is required for authentication
+//                 'Content-Type': 'application/json'
+//             }
+//         });
+
+//         if (!response.ok) {
+//             throw new Error('Failed to fetch appointments');
+//         }
+
+//         const data = await response.json();
+//         return data; // Assuming the response data contains appointments array
+//     } catch (error) {
+//         throw new Error('Failed to fetch appointments: ' + error.message);
+//     }
+// };
