@@ -24,17 +24,21 @@ export const Header = () => {
                         <Navigator title={`Hey, ${passport?.decodificado?.userName}!`} destination={"/profile"} />
                     </div>
 
+                    <div className="btn">
+                        <Navigator title={"Mis citas"} destination={"/appointments/profile"} />
+                    </div>
+
                     <div className="btn" onClick={logOut}>
-                        <Navigator title={"log out"} destination={"/"} />
+                        <Navigator title={"Log out"} destination={"/"} />
                     </div>
                 </div>
             ) : (
                 <div className="authMenu">
                     <div className="btn">
-                        <Navigator title={"register"} destination={"/register"} />
+                        <Navigator title={"Register"} destination={"/register"} />
                     </div>
                     <div className="btn">
-                        <Navigator title={"login"} destination={"/login"} />
+                        <Navigator title={"Login"} destination={"/login"} />
                     </div>
                 </div>
             )}
