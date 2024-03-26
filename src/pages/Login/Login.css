@@ -1,7 +1,6 @@
 .loginDesign {
     height: 86.5vh;
     width: 100vw;
-    background-color: lightgrey;
 
     display: flex;
     flex-direction: column;

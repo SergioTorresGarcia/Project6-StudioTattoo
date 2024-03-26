@@ -1,7 +1,6 @@
 .registerDesign {
     height: 86.5vh;
     width: 100vw;
-    background-color: lightgray;
 
     display: flex;
     flex-direction: column;

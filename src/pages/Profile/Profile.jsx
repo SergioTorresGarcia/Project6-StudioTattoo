@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import "./Profile.css";
-import { GetProfile } from "../../services/apiCalls";
+
 import { CInput } from "../../common/CInput/CInput";
 import dayjs from "dayjs";
 import { Header } from "../../common/Header/Header";
 import { CButton } from "../../common/CButton/CButton";
+import { GetProfile, UpdateProfile } from "../../services/apiCalls";
 
 export const Profile = () => {
     const datosUser = JSON.parse(localStorage.getItem("passport"));
     const navigate = useNavigate();
 
-    console.log("datosUser ", datosUser);
     const [write, setWrite] = useState("disabled");
     const [tokenStorage, setTokenStorage] = useState(datosUser?.token);
     const [loadedData, setLoadedData] = useState(false);
@@ -21,7 +21,7 @@ export const Profile = () => {
         birthDate: "",
         email: "",
     });
-    console.log("empty user ", user);
+
 
     const [userError, setUserError] = useState({
         firstNameError: "",
@@ -48,14 +48,11 @@ export const Profile = () => {
         }
     }, [tokenStorage]);
 
-    console.log("tokenStorage ", tokenStorage);
-
     useEffect(() => {
         const getUserProfile = async () => {
-            console.log("user b4 fetching ", user);
             try {
                 const fetched = await GetProfile(tokenStorage);
-                console.log("fetched ", fetched);
+
                 setLoadedData(true);
 
                 const parsedBirth = dayjs(fetched.data.birthDate).format("YYYY-MM-DD");
@@ -75,13 +72,33 @@ export const Profile = () => {
         if (!loadedData) {
             getUserProfile();
         }
-    }, [user]); //[]
+    }, [user]);
+
 
     // const updateData = async () => {
+    //     try {
+    //         await UpdateProfile(tokenStorage, user);
+    //         const updatedProfile = await GetProfile();
+    //         // Update the state with the updated profile data
+    //         // setUser(updatedProfile);
+    //         // setUser({
+    //         //     firstName: updatedProfile.data.firstName,
+    //         //     lastName: updatedProfile.data.lastName,
+    //         //     birthDate: updatedProfile.data.birthDate,
+    //         //     email: updatedProfile.data.email
+    //         // });
 
+    //         setWrite("disabled");
+    //     } catch (error) {
+    //         console.error('Error updating profile:', error);
+    //     }
+    // };
+
+
+    // const updateData = async () => {
     //     try {
     //         const fetched = await UpdateProfile(tokenStorage, user)
-
+    //         console.log("fetched", fetched);
     //         setUser({
     //             firstName: fetched.data.firstName,
     //             lastName: fetched.data.lastName,
@@ -95,17 +112,39 @@ export const Profile = () => {
     //     }
     // }
 
+    // const updateData = async () => {
+    //     try {
+    //         const updatedData = await UpdateProfile(tokenStorage, user);
+
+    //         setUser(updatedData);
+    //         setWrite("disabled");
+    //     } catch (error) {
+    //         console.error('Error updating profile:', error);
+    //     }
+    // };
+    const updateData = async () => {
+        try {
+            const fetched = await UpdateProfile(tokenStorage, user);
+
+            setUser(fetched);
+
+            setWrite("disabled");
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
     return (
         <>
             <Header />
             <div className="profileDesign">
                 {!loadedData ? (
-                    <div>CARGANDO</div>
+                    <img className="loader" src="./src/img/loader.gif" alt="loader" />
                 ) : (
                     <div>
                         <CInput
-                            className={`inputDesign ${userError.firstNameError !== "" ? "inputDesignError" : ""
-                                }`}
+                            className={`inputDesign ${userError.firstNameError !== "" ? "inputDesignError" : ""}`}
                             type={"text"}
                             placeholder={""}
                             name={"firstName"}
@@ -115,8 +154,7 @@ export const Profile = () => {
                             onBlurFunction={(e) => checkError(e)}
                         />
                         <CInput
-                            className={`inputDesign ${userError.lastNameError !== "" ? "inputDesignError" : ""
-                                }`}
+                            className={`inputDesign ${userError.lastNameError !== "" ? "inputDesignError" : ""}`}
                             type={"text"}
                             placeholder={""}
                             name={"lastName"}
@@ -126,8 +164,7 @@ export const Profile = () => {
                             onBlurFunction={(e) => checkError(e)}
                         />
                         <CInput
-                            className={`inputDesign ${userError.birthDateError !== "" ? "inputDesignError" : ""
-                                }`}
+                            className={`inputDesign ${userError.birthDateError !== "" ? "inputDesignError" : ""}`}
                             type={"text"}
                             placeholder={""}
                             name={"birthDate"}
@@ -137,8 +174,7 @@ export const Profile = () => {
                             onBlurFunction={(e) => checkError(e)}
                         />
                         <CInput
-                            className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""
-                                }`}
+                            className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""}`}
                             type={"email"}
                             placeholder={""}
                             name={"email"}

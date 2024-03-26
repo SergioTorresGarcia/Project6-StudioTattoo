@@ -1,0 +1,54 @@
+.cCardDesign,
+.card {
+    height: 20em;
+    width: 15em;
+
+    border: 0.075em solid teal;
+    border-radius: 0.5em;
+    background-color: #e9e3e3;
+
+    margin: 1em;
+    padding-bottom: 1.5em;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    transition: 0.2s;
+}
+
+.card:hover {
+    border: 0.15em solid teal;
+    transition: 0.2s;
+}
+
+
+.card-img {
+    margin-top: 1.5em;
+    width: 7em;
+
+    display: flex;
+    align-items: flex-start;
+}
+
+.card-content {
+    color: grey;
+    width: 13em;
+    overflow: hidden;
+}
+
+.card-content:hover {
+    overflow: scroll;
+}
+
+.card-title {
+    color: teal;
+    white-space: wrap;
+}
+
+.card-description {
+    color: grey;
+    white-space: wrap;
+
+}

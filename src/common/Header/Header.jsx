@@ -1,11 +1,9 @@
 
 import { useNavigate } from "react-router-dom";
-import { CustomLink } from "../CustomLink/CustomLink";
 import "./Header.css";
 import { Navigator } from "../Navigator/Navigator";
 
 export const Header = () => {
-
     const navigate = useNavigate();
     const passport = JSON.parse(localStorage.getItem("passport"));
 
@@ -17,13 +15,13 @@ export const Header = () => {
     return (
         <div className="headerDesign">
             <div className="btn">
-                <Navigator title={"home"} destination={"/"} />
+                <Navigator title={"HOME"} destination={"/"} />
             </div>
 
             {passport?.token ? (
                 <div className="authMenu">
                     <div className="btn">
-                        <Navigator title={passport?.decodificado?.name} destination={"/profile"} />
+                        <Navigator title={`Hey, ${passport?.decodificado?.userName}!`} destination={"/profile"} />
                     </div>
 
                     <div className="btn" onClick={logOut}>

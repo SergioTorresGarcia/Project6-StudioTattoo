@@ -52,6 +52,22 @@ export const LoginUser = async (credenciales) => {
 };
 
 
+export const GetServices = async () => {
+    try {
+        const response = await fetch(`${root}services`);
+        console.log(response);
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+
+        return data;
+    } catch (error) {
+        throw new Error('Get services failed: ' + error.message);
+    }
+};
+
 export const GetProfile = async (token) => {
     const options = {
         method: "GET",
@@ -62,11 +78,12 @@ export const GetProfile = async (token) => {
     };
 
     try {
+        const response = await fetch(`${root}users/self`, options);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
 
-        const response = await fetch(`${root}users/profile`, options);
-        console.log(response);
         const data = await response.json();
-
         if (!data.success) {
             throw new Error(data.message);
         }
@@ -74,5 +91,32 @@ export const GetProfile = async (token) => {
         return data;
     } catch (error) {
         throw new Error('Get profile failed: ' + error.message);
+    }
+};
+
+
+export const UpdateProfile = async (token, requestData) => {
+    const options = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(requestData)
+    };
+
+    try {
+        const response = await fetch(`${root}users/self`, options);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+        return data;
+    } catch (error) {
+        throw new Error('Update profile failed: ' + error.message);
     }
 };

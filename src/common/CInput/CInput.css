@@ -13,11 +13,15 @@
     align-items: center;
 }
 
-.inputDesign:active {
-    background-color: gainsboro;
+.inputDesign:focus {
+    background-color: whitesmoke;
 }
 
 .inputDesignError {
     border: 0.02em solid darkred;
     background-color: gainsboro;
+}
+
+.error {
+    color: darkred
 }
