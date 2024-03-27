@@ -11,7 +11,6 @@ export const RegisterUser = async (user) => {
 
     try {
         const response = await fetch(`${root}auth/register`, options);
-        console.log(response);
         const data = await response.json();
 
         if (!data.success) {
@@ -55,7 +54,6 @@ export const LoginUser = async (credenciales) => {
 export const GetServices = async () => {
     try {
         const response = await fetch(`${root}services`);
-        console.log(response);
         const data = await response.json();
 
         if (!data.success) {
@@ -104,18 +102,15 @@ export const UpdateProfile = async (token, data) => {
         },
         body: JSON.stringify(data)
     };
-    console.log("data", data);
     try {
         const response = await fetch(`${root}users/self`, options);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        console.log(response);
         const data = await response.json();
         if (!data.success) {
             throw new Error(data.message);
         }
-        console.log(data);
         return data;
     } catch (error) {
         throw new Error('Update profile failed: ' + error.message);
@@ -149,4 +144,55 @@ export const GetAppointments = async (token) => {
     }
 };
 
+export const DeleteAppointment = async (token, id) => {
+    const options = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+    }
+    try {
+        const response = await fetch(`${root}appointments/${id}`, options)
+        if (!response.ok) {
+            throw new Error('Failed to delete appointment: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('Failed to delete appointment: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Delete appointment failed: ' + error.message);
+    }
+}
+
+
+export const UpdateAppointment = async (token, id, body) => {
+    const options = {
+        method: "UPDATE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+    }
+    try {
+        const response = await fetch(`${root}appointments/${id}`, options)
+        if (!response.ok) {
+            throw new Error('Failed to update appointment: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('Failed to delete appointment: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Delete appointment failed: ' + error.message);
+    }
+}
 

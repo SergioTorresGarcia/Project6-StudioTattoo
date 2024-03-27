@@ -1,0 +1,10 @@
+.adminDesign {
+    min-height: 86.5vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}

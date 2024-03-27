@@ -1,13 +1,12 @@
 
 import "./CustomLink.css"
-import { useNavigate } from "react-router-dom"
 
-export const CustomLink = ({ title, destination }) => {
-    const navigate = useNavigate()
+export const CustomLink = ({ serviceId, appointmentDate }) => {
+
 
     return (
-        <div className="linkDesign" onClick={() => navigate(destination)}>
-            {title}
+        <div className="linkDesign" onClick={() => createAppointment(serviceId, appointmentDate)}>
+            <div>NEW APPOINTMENT</div>
         </div>
     )
 
