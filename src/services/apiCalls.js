@@ -11,7 +11,7 @@ export const RegisterUser = async (user) => {
 
     try {
         const response = await fetch(`${root}auth/register`, options);
-
+        console.log(response);
         const data = await response.json();
 
         if (!data.success) {
@@ -149,24 +149,4 @@ export const GetAppointments = async (token) => {
     }
 };
 
-// export const GetAppointments = async (token) => {
-//     try {
-//         // Adjust the URL as per your backend API endpoint
-//         const response = await fetch(`${root}appointments/profile`, {
-//             method: 'GET',
-//             headers: {
-//                 'Authorization': `Bearer ${token}`, // Assuming token is required for authentication
-//                 'Content-Type': 'application/json'
-//             }
-//         });
 
-//         if (!response.ok) {
-//             throw new Error('Failed to fetch appointments');
-//         }
-
-//         const data = await response.json();
-//         return data; // Assuming the response data contains appointments array
-//     } catch (error) {
-//         throw new Error('Failed to fetch appointments: ' + error.message);
-//     }
-// };

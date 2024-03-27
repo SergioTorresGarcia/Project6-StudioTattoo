@@ -73,7 +73,7 @@ export const Register = () => {
         <>
             <Header />
             <div className="registerDesign">
-                {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
+                {/* <pre>{JSON.stringify(user, null, 2)}</pre> HELP DURING DEV - preview of the body */}
                 <CInput
                     className={`inputDesign ${userError.nameError !== "" ? "inputDesignError" : ""
                         }`}
