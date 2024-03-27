@@ -23,7 +23,7 @@ export const Appointment = () => {
                 }
                 const appointmentsData = await GetAppointments(tokenStorage); // Pass the token to GetAppointments
                 const responseData = appointmentsData.data
-
+                console.log("app: ", responseData);
                 setAppointments(responseData)
                 setTimeout(() => { setLoadedData(true) }, 250)
 
@@ -39,28 +39,12 @@ export const Appointment = () => {
     return (
         <>
             <Header />
-            <div className="appointmentDesign">
+            <div className="cards">
 
                 {!loadedData ? (
                     <img className="loader" src="../../../src/img/loader.gif" alt="loader" />
                 ) : (
-                    <div>
-                        {
-                            appointments.map((item) => (
-                                <ApCard
-                                    key={item.id}
-                                    service={item.service.serviceName}
-                                    appointmentDate={item.appointmentDate}
-                                />
-                            ))
-                        }
-                        {appointments.map((item) => (
-                            <ApCard
-                                key={item.id}
-                                service={item.service.serviceName}
-                                appointmentDate={item.appointmentDate}
-                            />
-                        ))}
+                    <div className="appointmentDesign">
                         {appointments.map((item) => (
                             <ApCard
                                 key={item.id}

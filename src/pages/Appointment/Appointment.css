@@ -1,10 +1,24 @@
 .appointmentDesign {
+
     height: 86.5vh;
     width: 100vw;
 
-    display: flex;
+    overflow: hidden;
+    overflow: scroll;
+
+    display: inline-flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
+
+/* 
+.cards {
+    display: flex;
+
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+} 
+*/

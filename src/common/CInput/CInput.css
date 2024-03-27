@@ -25,3 +25,8 @@
 .error {
     color: darkred
 }
+
+.borderEdit {
+    border: 0.075em solid teal;
+    background-color: whitesmoke;
+}

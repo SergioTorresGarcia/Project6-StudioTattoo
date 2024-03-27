@@ -99,7 +99,7 @@ export const Profile = () => {
                 ) : (
                     <div>
                         <CInput
-                            className={`inputDesign ${userError.firstNameError !== "" ? "inputDesignError" : ""}`}
+                            className={`inputDesign ${userError.firstNameError !== "" ? "inputDesignError" : ""} ${write === "" ? "borderEdit" : ""}`}
                             type={"text"}
                             placeholder={""}
                             name={"firstName"}
@@ -109,7 +109,7 @@ export const Profile = () => {
                             onBlurFunction={(e) => checkError(e)}
                         />
                         <CInput
-                            className={`inputDesign ${userError.lastNameError !== "" ? "inputDesignError" : ""}`}
+                            className={`inputDesign ${userError.lastNameError !== "" ? "inputDesignError" : ""} ${write === "" ? "borderEdit" : ""}`}
                             type={"text"}
                             placeholder={""}
                             name={"lastName"}
@@ -119,7 +119,7 @@ export const Profile = () => {
                             onBlurFunction={(e) => checkError(e)}
                         />
                         <CInput
-                            className={`inputDesign ${userError.birthDateError !== "" ? "inputDesignError" : ""}`}
+                            className={`inputDesign ${userError.birthDateError !== "" ? "inputDesignError" : ""} ${write === "" ? "borderEdit" : ""}`}
                             type={"text"}
                             placeholder={""}
                             name={"birthDate"}
