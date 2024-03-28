@@ -196,3 +196,24 @@ export const UpdateAppointment = async (token, id, body) => {
     }
 }
 
+export const CreateAppointment = async (token, appointmentData) => {
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(appointmentData)
+    }
+
+    try {
+        const response = await fetch(`${root}appointments`, options);
+        if (!response.ok) {
+            throw new Error('Failed to create appointment: ' + response.statusText);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw new Error('Create appointment failed: ' + error.message);
+    }
+}
