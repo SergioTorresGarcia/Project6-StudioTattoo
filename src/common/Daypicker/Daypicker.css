@@ -10,6 +10,6 @@
     align-items: center;
 }
 
-.daypickerDesign div.rdp-day:hover {
-    cursor: pointer;
+.tealColor {
+    color: teal;
 }

@@ -1,29 +1,30 @@
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Header } from "../../common/Header/Header";
 import "./Appointment.css";
+import dayjs from "dayjs";
 import { GetAppointments, DeleteAppointment, CreateAppointment, GetServices } from "../../services/apiCalls";
 import { ApCard } from "../../common/ApCard/ApCard";
-import { DayPickerComponent } from "../../common/Daypicker/Daypicker";
-
-
+import { AppointmentForm } from "../../common/AppointmentForm/AppointmentForm";
 
 export const Appointment = () => {
     const datosUser = JSON.parse(localStorage.getItem("passport"));
-
     const [tokenStorage, setTokenStorage] = useState(datosUser?.token);
+    const [userId, setUserId] = useState(datosUser?.decodificado?.userId);
     const [loadedData, setLoadedData] = useState(false);
     const [appointments, setAppointments] = useState([]);
     const [services, setServices] = useState([]);
+    const [selectedServiceId, setSelectedServiceId] = useState('');
+    const [appointment, setAppointment] = useState([]);
 
-    const [appointment, setAppointment] = useState({
-        service: "",
-        appointmentDate: new Date(), // Default appointment date to today
-    });
-    const [write, setWrite] = useState("disabled");
+    useEffect(() => {
+        if (!tokenStorage) {
+            navigate("/");
+        }
+    }, [tokenStorage]);
+
     const navigate = useNavigate();
-
 
     // GETTING ALL APPOINTMENTS (needs token)
     useEffect(() => {
@@ -32,21 +33,15 @@ export const Appointment = () => {
                 if (!tokenStorage) {
                     throw new Error("Token is not available");
                 }
-                const appointmentsData = await GetAppointments(tokenStorage); // Pass the token to GetAppointments
-                const responseData = appointmentsData.data
-
-                setAppointments(responseData)
+                const appointmentsData = await GetAppointments(tokenStorage);
+                setAppointments(appointmentsData.data)
                 setTimeout(() => { setLoadedData(true) }, 250)
-
             } catch (error) {
-                console.error('Failed to fetch appointments:', error.message);
+                throw new Error('Cannot fetch appointments:', error.message);
             }
         };
-        if (!loadedData) {
-            fetchAppointments();
-        }
+        fetchAppointments();
     }, [loadedData]);
-
 
     // GETTING ALL SERVICES for the dropdown menu (no token needed)
     useEffect(() => {
@@ -55,161 +50,101 @@ export const Appointment = () => {
                 const servicesData = await GetServices(); //fetching function in apiCalls.js
                 setServices(servicesData.data); //we update data with the fetched response
             } catch (error) {
-                throw new Error('Cannot fetch services:' + error.message);
+                console.error('Cannot fetch services:', error.message);
             }
         };
-        if (!loadedData) {
-            fetchServices();
-        }
-    }, [loadedData]);
-
-
-
+        fetchServices();
+    }, []);
 
     // GRABS serviceId from the dropdown menu
     const handleChange = (event) => {
-        const { name, value } = event.target;
-        setAppointment({ ...appointment, [name]: value });
-        console.log(1, name, value);
+        setSelectedServiceId(event.target.value);
     };
 
-
-
-    const handleSubmit = async (e) => {
-        // e.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const newAppointment = {
+            serviceId: selectedServiceId,
+            appointmentDate: dayjs(localStorage.getItem("dateTime")).format("YYYY-MM-DD hh:mm"),
+        };
         try {
-            // Call the API function to create the appointment
-            await CreateAppointment(tokenStorage, appointment);
-            console.log(3, tokenStorage);
-            console.log(4, appointment);
-            // Redirect to the appointments page after successful creation
-            navigate("/appointments");
+            setAppointment([...appointment, newAppointment]);
+            console.log(1, tokenStorage)
+            console.log(2, newAppointment);
+            console.log(3, selectedServiceId);
+            await CreateAppointment(tokenStorage, newAppointment);
+            setAppointments([...appointments, newAppointment]);
+            setLoadedData(false);
         } catch (error) {
-            console.error("Failed to create appointment:", error.message);
-            // Handle error (e.g., show error message to user)
+            console.error('Failed to create appointment:', error.message);
         }
     };
 
+    //button deletes each appointment by id
     const deleteAppointment = async (id) => {
         try {
             await DeleteAppointment(tokenStorage, id);
             setAppointments(prevAppointments => prevAppointments.filter(appointment => appointment.id !== id));
         } catch (error) {
-            throw new Error('Failed to delete appointment: ' + error.message);
+            throw new Error('Failed to delete appointment: ', error.message);
         }
     };
 
 
-    //////////////////////////////////////////////////////////////////////
-
-
-    // const updateAppointment = async (id) => {
-    //     try {
-    //         await UpdateAppointment(tokenStorage, id);
-    //         // setAppointments(prevAppointments => prevAppointments.filter(appointment => appointment.id !== id));
-    //         setAppointments(data)
-
-    //         // setUser(userData);
-    //         setWrite("disabled");
-    //     } catch (error) {
-    //         throw new Error('Updating data failed: ' + error.message);
-    //     }
-    // };
-
-    // const updateAppointment = async () => {
-    //     try {
-    //         const appointmentData = {
-    //             appointmentDate: appointment.appointmentDate,
-    //             service: appointment.service
-    //         };
-
-    //         setAppointment(appointmentData);
-    //         // setWrite("disabled");
-    //     } catch (error) {
-    //         throw new Error('Updating data failed: ' + error.message);
-    //     }
-    // };
-
-
-    //////////////////////////////////////////////////////////////////////
-
-    // const createAppointment = async () => {
-    //     try {
-    //         await CreateAppointment(tokenStorage, appointment);
-    //         // should show new appointment in the user appointments list
-    //         // not sure if setLoadedData() false or true... (or maybe with useState?)
-    //         setLoadedData(false);
-    //     } catch (error) {
-    //         console.error('Failed to create appointment:', error.message);
-    //     }
-    // };
-
-    //////////////////////////////////////////////////////////////////////
-
-
-
-    return (
-        <>
-            <Header />
-            <div className="">
-                {!loadedData ? (
-                    <img className="loader" src="../../../src/img/loader.gif" alt="loader" />
+    return (<>
+        <Header />
+        <div className="">
+            {!loadedData ? (
+                <img className="loader" src="../../../src/img/loader.gif" alt="loader" />
+            ) : (
+                appointments.length === 0 ? (
+                    <div>
+                        {/* <div>NEW APPOINTMENTsdg</div> */}
+                        <div className="appointmentDesign">NO APPOINTMENTS BOOKED</div>
+                    </div>
                 ) : (
-                    appointments.length == 0
-                        ? <>
-                            <div> NEW APPOINTMENTfghjkl</div>
-                            <div className="appointmentDesign">NO APPOINTMENTS BOOKED</div>
-                        </>
-                        : <div className="appPage">
+                    <div className="appPage">
+                        <div className="formAppointment">
+                            <form onSubmit={handleSubmit}>
+                                {/* DROPDOWN MENU (mapping all services) */}
+                                <div className="form-group">
+                                    <select
+                                        className="dropdownDesign"
+                                        id="serviceId"
+                                        name="serviceId"
+                                        value={selectedServiceId}
+                                        onChange={handleChange}
+                                        required
+                                    >
+                                        <option value="">Select a service</option>
+                                        {services.map(service => (
+                                            <option key={service.id} value={service.id}>
+                                                {service.serviceName}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
 
-                            <div className="formAppointment">
-                                <form onSubmit={() => handleSubmit}>
-                                    <div>
-                                        <select
-                                            className="dropdownDesign"
-                                            id="serviceId"
-                                            name="serviceId"
-                                            value={appointment.service.serviceId}
-                                            onChange={handleChange}
-                                        >
-                                            <option value="">Select a service</option>
-                                            {/* Mapping services to create options for the dropdown menu */}
-                                            {services.map(service => (
-                                                <option key={service.id} value={service.id}>
-                                                    {service.serviceName}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <DayPickerComponent
-                                            selected={appointment.appointmentDate}
-                                            onChange={(date) => setAppointment({ ...appointment, appointmentDate: date })}
-                                        />
-                                    </div>
-                                    <button className="appBtn" type="submit">Create Appointment</button>
+                                <AppointmentForm />
 
-                                </form>
-                            </div>
-
-                            <div className="appointmentDesign">
-                                {appointments.map((item) => (
-                                    <ApCard
-                                        key={item.id}
-                                        service={item.service.serviceName}
-                                        appointmentDate={item.appointmentDate}
-                                        // onUpdate={() => updateAppointment(item.id)}
-                                        onDelete={() => deleteAppointment(item.id)}
-                                    />
-                                ))}
-                            </div>
+                                <button className="appBtn" type="submit">Create new appointment</button>
+                            </form>
                         </div>
+                        <div className="appointmentDesign">
+                            {appointments.map((item) => (
+                                <ApCard
+                                    key={item.id}
+                                    service={item.service.serviceName}
+                                    appointmentDate={item.appointmentDate}
+                                    onDelete={() => deleteAppointment(item.id)}
+                                />
+                            ))}
+                        </div>
+                    </div>
                 )
-                }
-            </div>
-        </>
-    );
+            )}
+        </div>
+    </>);
 };
-
 
 
