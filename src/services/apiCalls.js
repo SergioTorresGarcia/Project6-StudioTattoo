@@ -93,25 +93,25 @@ export const GetProfile = async (token) => {
 };
 
 
-export const UpdateProfile = async (token, data) => {
+export const UpdateProfile = async (token, user) => {
     const options = {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(user)
     };
     try {
         const response = await fetch(`${root}users/self`, options);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        const data = await response.json();
-        if (!data.success) {
-            throw new Error(data.message);
+        const responseData = await response.json();
+        if (!responseData.success) {
+            throw new Error(responseData.message);
         }
-        return data;
+        return responseData;
     } catch (error) {
         throw new Error('Update profile failed: ' + error.message);
     }
@@ -217,3 +217,48 @@ export const CreateAppointment = async (token, appointmentData) => {
         throw new Error('Failed creating appointment', error.message);
     }
 };
+
+export const GetUsers = async (token) => {
+    try {
+        const response = await fetch(`${root}users`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const fetched = await response.json();
+        const data = fetched.data
+        return data;
+    } catch (error) {
+        throw new Error('Get users failed APICALLS.JS: ' + error.message);
+    }
+};
+
+export const DeleteUser = async (token, id) => {
+    const options = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    }
+    try {
+        const response = await fetch(`${root}users/${id}`, options)
+        if (!response.ok) {
+            throw new Error('Failed to delete user: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('Failed to delete user: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Delete user failed: ' + error.message);
+    }
+}

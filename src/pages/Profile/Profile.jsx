@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import "./Profile.css";
-
-import { CInput } from "../../common/CInput/CInput";
 import dayjs from "dayjs";
+
 import { Header } from "../../common/Header/Header";
+import { CInput } from "../../common/CInput/CInput";
 import { CButton } from "../../common/CButton/CButton";
 import { GetProfile, UpdateProfile } from "../../services/apiCalls";
 
 export const Profile = () => {
     const datosUser = JSON.parse(localStorage.getItem("passport"));
     const navigate = useNavigate();
-
     const [write, setWrite] = useState("disabled");
     const [tokenStorage, setTokenStorage] = useState(datosUser?.token);
     const [loadedData, setLoadedData] = useState(false);
@@ -22,13 +21,11 @@ export const Profile = () => {
         email: "",
     });
 
-
     const [userError, setUserError] = useState({
         firstNameError: "",
         lastNameError: "",
         birthDateError: "",
         emailError: "",
-
     });
 
     const inputHandler = (e) => {
@@ -52,8 +49,6 @@ export const Profile = () => {
         const getUserProfile = async () => {
             try {
                 const fetched = await GetProfile(tokenStorage);
-                setLoadedData(true);
-
                 const parsedBirth = dayjs(fetched.data.birthDate).format("YYYY-MM-DD");
                 setUser({
                     firstName: fetched.data.firstName,
@@ -61,6 +56,7 @@ export const Profile = () => {
                     birthDate: parsedBirth,
                     email: fetched.data.email,
                 });
+                setLoadedData(true);
 
             } catch (error) {
                 throw new Error('Get profile failed: ' + error.message);
@@ -72,18 +68,17 @@ export const Profile = () => {
         }
     }, [user]);
 
-
     const updateData = async () => {
+        const userData = {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            birthDate: user.birthDate,
+            email: user.email
+        };
         try {
-            //data needs to be prepared to be updated (if not we pass an object from the body)
-            const userData = {
-                firstName: user.firstName,
-                lastName: user.lastName,
-                birthDate: user.birthDate,
-                email: user.email
-            };
-
-            setUser(userData);
+            const fetched = await UpdateProfile(tokenStorage, userData);
+            setUser(userData)
+            setLoadedData(true)
             setWrite("disabled");
         } catch (error) {
             throw new Error('Updating data failed: ' + error.message);

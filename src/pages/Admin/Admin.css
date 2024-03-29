@@ -1,10 +1,98 @@
 .adminDesign {
     min-height: 86.5vh;
     width: 100vw;
-
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.table {
+    width: fit-content;
+    height: fit-content;
+    border: 0.075em solid teal;
+    border-radius: 0.5em;
+    background-color: #e9e3e3;
+    margin: 1em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.thead {
+    display: flex;
+    justify-content: flex-start;
+    color: teal;
+    border: 0.075em solid teal;
+    background-color: rgba(0, 128, 128, 0.197);
+    height: 3em;
+    margin-bottom: 1em;
+}
+
+.tbody {
+    background-color: rgba(0, 128, 128, 0.197);
+    border: 0.075em solid teal;
+}
+
+.div {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
+
+.grayBg {
+    background-color: gainsboro;
+}
+
+.tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.pos,
+.name,
+.birth,
+.email,
+.role,
+.del {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pos {
+    width: 3vw;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1em;
+}
+
+.name {
+    width: 20vw;
+}
+
+
+.email,
+.birth,
+.role {
+    width: 18vw;
+    display: flex;
+    justify-content: center;
+}
+
+.buttons {
+    width: 5vw;
+    display: flex;
+    justify-content: space-between;
+    margin: 0.2em;
+}
+
+.del {
+    display: flex;
+    justify-content: flex-start;
+    color: darkred;
 }

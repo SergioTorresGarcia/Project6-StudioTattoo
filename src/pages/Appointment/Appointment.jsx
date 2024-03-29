@@ -69,9 +69,6 @@ export const Appointment = () => {
         };
         try {
             setAppointment([...appointment, newAppointment]);
-            console.log(1, tokenStorage)
-            console.log(2, newAppointment);
-            console.log(3, selectedServiceId);
             await CreateAppointment(tokenStorage, newAppointment);
             setAppointments([...appointments, newAppointment]);
             setLoadedData(false);
@@ -89,7 +86,6 @@ export const Appointment = () => {
             throw new Error('Failed to delete appointment: ', error.message);
         }
     };
-
 
     return (<>
         <Header />
