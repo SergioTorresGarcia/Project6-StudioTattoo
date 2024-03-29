@@ -18,7 +18,7 @@ export const DayPickerComponent = ({ selectedDay, handleDateTimeSelect }) => {
     };
 
     return (
-        <div className='daypickerDesign rdp-button'>
+        <div className='daypickerDesign rdp-button rdp-day'>
             <div>{handleDaySelect}</div>
             <div>
                 <input
@@ -32,9 +32,9 @@ export const DayPickerComponent = ({ selectedDay, handleDateTimeSelect }) => {
                     onDayClick={handleDaySelect}
                 />
 
-                {/* {selectedDay && (
+                {selectedDay && (
                     <p>Selected day: {selectedDay}</p>
-                )} */}
+                )}
             </div>
         </div>
     );

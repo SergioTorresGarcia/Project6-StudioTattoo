@@ -5,7 +5,7 @@ import dayjs from "dayjs"
 export const ApCard = ({ service, appointmentDate, onDelete }) => {
     {/*  onUpdate, */ }
     const day = dayjs(appointmentDate).format("dddd DD-MM-YYYY");
-    const hour = dayjs(appointmentDate).format("HH:MM");
+    const hour = dayjs(appointmentDate).format("HH:mm");
 
     return (
         <div className="">

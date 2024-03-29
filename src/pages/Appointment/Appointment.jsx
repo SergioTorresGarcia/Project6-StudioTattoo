@@ -65,7 +65,7 @@ export const Appointment = () => {
         event.preventDefault();
         const newAppointment = {
             serviceId: selectedServiceId,
-            appointmentDate: dayjs(localStorage.getItem("dateTime")).format("YYYY-MM-DD hh:mm"),
+            appointmentDate: dayjs(localStorage.getItem("dateTime")).format("YYYY-MM-DD HH:mm"),
         };
         try {
             setAppointment([...appointment, newAppointment]);
@@ -97,15 +97,6 @@ export const Appointment = () => {
             {!loadedData ? (
                 <img className="loader" src="../../../src/img/loader.gif" alt="loader" />
             ) : (
-
-                //     appointments.length === 0
-                // ? (
-                // <div>
-                //     {/* <div>NEW APPOINTMENTsdg</div> */}
-                //     <div className="appointmentDesign">NO APPOINTMENTS BOOKED</div>
-                // </div>
-                // )
-                // : (
                 <div className="appPage">
                     <div className="formAppointment">
                         <form onSubmit={handleSubmit}>
