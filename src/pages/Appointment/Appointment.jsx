@@ -97,51 +97,65 @@ export const Appointment = () => {
             {!loadedData ? (
                 <img className="loader" src="../../../src/img/loader.gif" alt="loader" />
             ) : (
-                appointments.length === 0 ? (
-                    <div>
-                        {/* <div>NEW APPOINTMENTsdg</div> */}
-                        <div className="appointmentDesign">NO APPOINTMENTS BOOKED</div>
-                    </div>
-                ) : (
-                    <div className="appPage">
-                        <div className="formAppointment">
-                            <form onSubmit={handleSubmit}>
-                                {/* DROPDOWN MENU (mapping all services) */}
-                                <div className="form-group">
-                                    <select
-                                        className="dropdownDesign"
-                                        id="serviceId"
-                                        name="serviceId"
-                                        value={selectedServiceId}
-                                        onChange={handleChange}
-                                        required
-                                    >
-                                        <option value="">Select a service</option>
-                                        {services.map(service => (
-                                            <option key={service.id} value={service.id}>
-                                                {service.serviceName}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
 
-                                <AppointmentForm />
+                //     appointments.length === 0
+                // ? (
+                // <div>
+                //     {/* <div>NEW APPOINTMENTsdg</div> */}
+                //     <div className="appointmentDesign">NO APPOINTMENTS BOOKED</div>
+                // </div>
+                // )
+                // : (
+                <div className="appPage">
+                    <div className="formAppointment">
+                        <form onSubmit={handleSubmit}>
+                            {/* DROPDOWN MENU (mapping all services) */}
+                            <div className="form-group">
+                                <select
+                                    className="dropdownDesign"
+                                    id="serviceId"
+                                    name="serviceId"
+                                    value={selectedServiceId}
+                                    onChange={handleChange}
+                                    required
+                                >
+                                    <option value="">Select a service</option>
+                                    {services.map(service => (
+                                        <option key={service.id} value={service.id}>
+                                            {service.serviceName}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
 
-                                <button className="appBtn" type="submit">Create new appointment</button>
-                            </form>
-                        </div>
-                        <div className="appointmentDesign">
-                            {appointments.map((item) => (
-                                <ApCard
-                                    key={item.id}
-                                    service={item.service.serviceName}
-                                    appointmentDate={item.appointmentDate}
-                                    onDelete={() => deleteAppointment(item.id)}
-                                />
-                            ))}
-                        </div>
+                            <AppointmentForm />
+
+                            <button className="appBtn" type="submit">Create new appointment</button>
+                        </form>
                     </div>
-                )
+
+                    {appointments.length === 0
+                        ? (
+                            <div>
+                                {/* <div>NEW APPOINTMENTsdg</div> */}
+                                <div className="appointmentDesign">NO APPOINTMENTS BOOKED</div>
+                            </div>
+                        )
+                        : (
+
+                            <div className="appointmentDesign">
+
+                                {appointments.map((item) => (
+                                    <ApCard
+                                        key={item.id}
+                                        service={item.service.serviceName}
+                                        appointmentDate={item.appointmentDate}
+                                        onDelete={() => deleteAppointment(item.id)}
+                                    />
+                                ))}
+                            </div>
+                        )}
+                </div>
             )}
         </div>
     </>);
