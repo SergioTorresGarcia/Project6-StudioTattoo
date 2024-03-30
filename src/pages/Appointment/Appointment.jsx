@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { Header } from "../../common/Header/Header";
 import "./Appointment.css";
 import dayjs from "dayjs";
-import { GetAppointments, DeleteAppointment, CreateAppointment, GetServices } from "../../services/apiCalls";
+import { GetAppointments, DeleteAppointment, CreateAppointment, GetServices, UpdateAppointment } from "../../services/apiCalls";
 import { ApCard } from "../../common/ApCard/ApCard";
 import { AppointmentForm } from "../../common/AppointmentForm/AppointmentForm";
 
@@ -87,6 +87,20 @@ export const Appointment = () => {
         }
     };
 
+    //button updates each appointment by id
+    const updateAppointment = async (id, updatedData) => {
+        try {
+            const updatedAppointment = await UpdateAppointment(tokenStorage, id, updatedData);
+            setAppointments(prevAppointments =>
+                prevAppointments.map(appointment =>
+                    appointment.id === id ? updatedAppointment : appointment
+                )
+            );
+        } catch (error) {
+            throw new Error('Failed to update appointment: ' + error.message);
+        }
+    };
+
     return (<>
         <Header />
         <div className="">
@@ -124,7 +138,6 @@ export const Appointment = () => {
                     {appointments.length === 0
                         ? (
                             <div>
-                                {/* <div>NEW APPOINTMENTsdg</div> */}
                                 <div className="appointmentDesign">NO APPOINTMENTS BOOKED</div>
                             </div>
                         )
@@ -135,6 +148,7 @@ export const Appointment = () => {
                                         key={item.id}
                                         service={item.service.serviceName}
                                         appointmentDate={item.appointmentDate}
+                                        // onUpdate={() => updateAppointment(item.id)}
                                         onDelete={() => deleteAppointment(item.id)}
                                     />
                                 ))}

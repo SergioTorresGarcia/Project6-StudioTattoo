@@ -14,6 +14,15 @@
     transition: 0.2s;
 }
 
+.group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 0.025em solid teal;
+    flex-wrap: wrap;
+}
+
 .btn1,
 .btn2 {
     border: 0.025em solid teal;
@@ -23,6 +32,7 @@
     height: 2em;
     width: 22em;
 
+
 }
 
 input::placeholder {
@@ -31,14 +41,6 @@ input::placeholder {
     font-size: smaller;
 }
 
-.group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    border-bottom: 0.025em solid teal;
-    flex-wrap: wrap;
-}
 
 
 .newServiceBtn:hover {

@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+.tealText {
+    color: teal;
+}
+
 .inputDesign {
     margin: 2.5em;
 }

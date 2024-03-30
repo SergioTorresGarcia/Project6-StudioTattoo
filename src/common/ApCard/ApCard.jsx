@@ -2,7 +2,7 @@
 import "./ApCard.css"
 import dayjs from "dayjs"
 
-export const ApCard = ({ service, appointmentDate, onDelete }) => {
+export const ApCard = ({ service, appointmentDate, onUpdate, onDelete }) => {
     {/*  onUpdate, */ }
     const day = dayjs(appointmentDate).format("dddd DD-MM-YYYY");
     const hour = dayjs(appointmentDate).format("HH:mm");
@@ -15,7 +15,7 @@ export const ApCard = ({ service, appointmentDate, onDelete }) => {
             </div>
             <div>
                 <div className="btnApp">
-                    <button className="btnGreen" >edit</button> {/*onClick={onUpdate}*/}
+                    <button className="btnGreen" onClick={onUpdate}>edit</button>
                     <button className="btnRed" onClick={onDelete}>delete</button>
                 </div>
             </div>

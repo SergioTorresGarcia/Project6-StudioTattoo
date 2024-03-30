@@ -65,13 +65,13 @@ export const GetServices = async () => {
     }
 };
 
-export const CreateService = async () => {
+export const CreateService = async (tokenStorage, serviceData) => {
     try {
         const response = await fetch(`${root}services`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${tokenStorage}`
             },
             body: JSON.stringify(serviceData)
         });

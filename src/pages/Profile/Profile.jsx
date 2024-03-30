@@ -70,20 +70,26 @@ export const Profile = () => {
 
     const updateData = async () => {
         const userData = {
-            firstName: user.firstName,
-            lastName: user.lastName,
-            birthDate: user.birthDate,
+            first_name: user.firstName,
+            last_name: user.lastName,
+            birth_date: user.birthDate,
             email: user.email
         };
         try {
-            const fetched = await UpdateProfile(tokenStorage, userData);
-            setUser(userData)
-            setLoadedData(true)
+            const updatedProfile = await UpdateProfile(tokenStorage, userData);
+            setUser(updatedProfile)
+            setLoadedData(false)
             setWrite("disabled");
+
+            localStorage.removeItem("passport");
+            navigate("/login");
+
         } catch (error) {
             throw new Error('Updating data failed: ' + error.message);
         }
     };
+
+
 
     return (
         <>
@@ -91,7 +97,10 @@ export const Profile = () => {
             <div className="profileDesign">
                 {!loadedData ? (
                     <img className="loader" src="./src/img/loader.gif" alt="loader" />
-                ) : (
+                ) : (<>
+                    <span className="tealText">⚠️</span>
+                    <span className="tealText">you will need to log back in<br />after any information update</span>
+                    <span className="tealText">⚠️</span>
                     <div>
                         <CInput
                             className={`inputDesign ${userError.firstNameError !== "" ? "inputDesignError" : ""} ${write === "" ? "borderEdit" : ""}`}
@@ -139,6 +148,7 @@ export const Profile = () => {
                             functionEmit={write === "" ? updateData : () => setWrite("")}
                         />
                     </div>
+                </>
                 )}
             </div>
         </>

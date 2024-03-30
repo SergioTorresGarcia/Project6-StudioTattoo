@@ -13,11 +13,10 @@ import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
     const datosUser = JSON.parse(localStorage.getItem("passport"));
-    const navigate = useNavigate();
     const [tokenStorage, setTokenStorage] = useState(datosUser?.token);
+    const navigate = useNavigate();
     const [roleStorage, setRoleStorage] = useState(datosUser?.decodificado.roleName);
     const [data, setData] = useState([]); //we get an array of services
-    const [serviceData, setServiceData] = useState([])
 
     useEffect(() => {
         fetchData(); // Function to fetch data
@@ -35,17 +34,19 @@ export const Home = () => {
     };
 
     ////////////////////////////////////////////////////////////// trying under this
-    const [service, setService] = useState({
+
+    const [newService, setNewService] = useState({
         serviceName: "",
         description: "",
     });
 
-    const inputHandler = (e) => {
-        setService((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value,
-        }));
-    };
+
+    // const inputHandler = (e) => {
+    //     setService((prevState) => ({
+    //         ...prevState,
+    //         [e.target.name]: e.target.value,
+    //     }));
+    // };
 
     useEffect(() => {
         if (roleStorage !== 'superadmin') {
@@ -60,47 +61,67 @@ export const Home = () => {
     }, [tokenStorage]);
 
 
-    const createService = async () => {
-        try {
-            const responseData = await CreateService();
-            setServiceData(responseData.data);
 
+
+    const createService = async (token) => {
+        try {
+            console.log("Token in createService:", token);
+            const responseData = await CreateService(tokenStorage, newService);
+            console.log("New service created:", responseData);
+            // setData(responseData.data);
+            console.log("New service created:", responseData);
         } catch (error) {
-            throw new Error('Cannot fetch services:' + error.message);
+            console.log(token);
+            throw new Error('Failed to create service:' + error.message);
         }
     };
+
     return (
         <>
             <Header />
             <div className="homeDesign">
+
                 <div>
                     {
-                        roleStorage === "superadmin"
-                            ? (
-                                <div className="group">
-                                    <span><input placeholder="service name" className="btn1" type="text" name="serviceName" /></span>
-                                    <span><input placeholder="description" className="btn2" type="text" name="description" /></span>
-                                    <span><button className="newServiceBtn" onClick={() => { console.log("hola Bonito"); }}>
-                                        CREATE NEW SERVICE
-                                    </button></span>
-                                </div>
-                            )
-                            : null
+                        roleStorage === "superadmin" &&
+
+                        <div className="group">
+                            <span><input
+                                placeholder="service name"
+                                className="btn1"
+                                type="text"
+                                name="serviceName"
+                                value={newService.serviceName}
+                                onChange={(e) => setNewService({ ...newService, serviceName: e.target.value })}
+                            /></span>
+                            <span><input
+                                placeholder="description"
+                                className="btn2"
+                                type="text"
+                                name="description"
+                                value={newService.description}
+                                onChange={(e) => setNewService({ ...newService, description: e.target.value })}
+                            /></span>
+                            {console.log(newService)}
+                            <span><button className="newServiceBtn" onClick={() => { createService(tokenStorage, newService) }}>
+                                CREATE NEW SERVICE
+                            </button></span>
+                        </div>
+
                     }
                 </div>
                 <div className="cardGroup">
                     {data.map((item) => (
-
                         <CCard
                             key={item.id}
                             title={item.serviceName}
                             description={item.description}
-                            imageUrl={`./src/img/s${item.id}.png`} // resolve what happens when there is no image
-                        />
 
+                            // there are only a few pics that repeat periodically
+                            imageUrl={`./src/img/s${item.id <= 4 ? item.id : item.id % 4}.png`}
+                        />
                     ))}
                 </div>
-                {/* createService(token, serviceData) */}
             </div>
         </>
     )
