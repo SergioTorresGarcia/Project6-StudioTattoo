@@ -1,7 +1,54 @@
 .homeDesign {
     min-height: 86.5vh;
     width: 100vw;
+}
 
+.newServiceBtn {
+    border: 0.075em solid teal;
+    border-radius: 0.5em;
+    background-color: #e9e3e3;
+    color: teal;
+    font-weight: bold;
+    height: 3em;
+    width: 22em;
+    transition: 0.2s;
+}
+
+.btn1,
+.btn2 {
+    border: 0.025em solid teal;
+    border-radius: 0.5em;
+    background-color: #e9e3e3;
+    color: teal;
+    height: 2em;
+    width: 22em;
+
+}
+
+input::placeholder {
+    padding-left: 1em;
+    color: teal;
+    font-size: smaller;
+}
+
+.group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 0.025em solid teal;
+    flex-wrap: wrap;
+}
+
+
+.newServiceBtn:hover {
+    border: 0.15em solid teal;
+    cursor: pointer;
+    /* transform: scale(1.1); */
+    transition: 0.2s;
+}
+
+.cardGroup {
     display: flex;
     flex-direction: row;
     justify-content: center;

@@ -1,3 +1,4 @@
+/* //////////////////////////////////////////////////////////// general /// */
 .adminDesign {
     min-height: 86.5vh;
     width: 100vw;
@@ -8,8 +9,10 @@
 
 }
 
+
+/* //////////////////////////////////////////////////////////// table parts /// */
 .table {
-    width: fit-content;
+    width: 90vw;
     height: fit-content;
     border: 0.075em solid teal;
     border-radius: 0.5em;
@@ -53,12 +56,16 @@
     justify-content: flex-start;
 }
 
+/* //////////////////////////////////////////////////////////// fields /// */
 .pos,
 .name,
 .birth,
 .email,
 .role,
-.del {
+.del,
+.title,
+.description,
+.image {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -71,28 +78,71 @@
     margin-right: 1em;
 }
 
-.name {
+.name,
+.title,
+.img {
     width: 20vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.img {
+    margin-left: 5em;
+}
+
+.role {
+    width: 20vw;
+}
+
+.name {
+    width: 13em;
 }
 
 
 .email,
 .birth,
-.role {
-    width: 18vw;
+.role,
+.description {
     display: flex;
     justify-content: center;
 }
 
+.email,
+.birth {
+    width: 18vw;
+}
+
+.description {
+    width: 40vw;
+}
+
+/* //////////////////////////////////////////////////////////// buttons /// */
 .buttons {
-    width: 5vw;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 0.2em;
 }
 
 .del {
+    width: 5vw;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     color: darkred;
+}
+
+.edit {
+    width: 5vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: teal;
+}
+
+.image {
+    height: 7em;
+    width: 15vw;
+    transform: scale(0.15);
 }

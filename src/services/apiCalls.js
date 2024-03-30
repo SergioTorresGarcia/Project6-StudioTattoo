@@ -50,7 +50,6 @@ export const LoginUser = async (credenciales) => {
     }
 };
 
-
 export const GetServices = async () => {
     try {
         const response = await fetch(`${root}services`);
@@ -63,6 +62,27 @@ export const GetServices = async () => {
         return data;
     } catch (error) {
         throw new Error('Get services failed: ' + error.message);
+    }
+};
+
+export const CreateService = async () => {
+    try {
+        const response = await fetch(`${root}services`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(serviceData)
+        });
+        if (!response.ok) {
+            throw new Error('Failed to create service');
+        }
+        console.log("service created");
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw new Error('Create service failed: ' + error.message);
     }
 };
 
@@ -92,7 +112,6 @@ export const GetProfile = async (token) => {
     }
 };
 
-
 export const UpdateProfile = async (token, user) => {
     const options = {
         method: "PUT",
@@ -116,7 +135,6 @@ export const UpdateProfile = async (token, user) => {
         throw new Error('Update profile failed: ' + error.message);
     }
 };
-
 
 export const GetAppointments = async (token) => {
     const options = {
@@ -169,7 +187,6 @@ export const DeleteAppointment = async (token, id) => {
     }
 }
 
-
 export const UpdateAppointment = async (token, id, body) => {
     const options = {
         method: "UPDATE",
@@ -195,7 +212,6 @@ export const UpdateAppointment = async (token, id, body) => {
         throw new Error('Delete appointment failed: ' + error.message);
     }
 }
-
 
 export const CreateAppointment = async (token, appointmentData) => {
     try {
@@ -260,5 +276,30 @@ export const DeleteUser = async (token, id) => {
 
     } catch (error) {
         throw new Error('Delete user failed: ' + error.message);
+    }
+}
+
+export const DeleteService = async (token, id) => {
+    const options = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    }
+    try {
+        const response = await fetch(`${root}services/${id}`, options)
+        if (!response.ok) {
+            throw new Error('Failed to delete service: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('Failed to delete service: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Delete service failed: ' + error.message);
     }
 }

@@ -129,9 +129,7 @@ export const Appointment = () => {
                             </div>
                         )
                         : (
-
                             <div className="appointmentDesign">
-
                                 {appointments.map((item) => (
                                     <ApCard
                                         key={item.id}
