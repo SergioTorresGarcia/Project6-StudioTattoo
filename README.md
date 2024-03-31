@@ -46,20 +46,32 @@ The proposed exercise is to create a front-end site connecting to the Tattoo Stu
 
 ##### Minimum viable product (MVP): 
 ✅ Landing page (home)
+
 ✅ User register
+
 ✅ User login
+
 ✅ Profile view (see info and update)
+
 ✅ Own appointments view (see info and delete)
+
 ✅ Service view (can be integrated in landing/home page)
+
 ✅ Create new appointments view (as User)
+
 ✅ See and delete users (as Admin)
 
 ##### Extras:
 ⬜️ Appointment detail view
+
 ⬜️ See an specific user (as Admin)
+
 ⬜️ Update user (as Admin)
+
 ⬜️ ( in progress ) Services CRUD (as Admin)
+
 ✅ ( partially❗️) Data validation (check all data format before sending it to the back-end...)
+
 ✅ ( partially❗️) Error handling (displaying helpful messages when an error occurs, both form-filling related errors and back-end failed requests/responses)
 
 
