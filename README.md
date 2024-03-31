@@ -94,12 +94,12 @@ The proposed exercise is to create a front-end site connecting to the Tattoo Stu
 
 
 
-<!-- ## Deployment
+## Deployment
 <div align="center">
-    <a href="https://www.google.com">
-        <strong>Url a producción </strong>
-    </a>🚀🚀🚀
-</div> -->
+    🚀<a href="https://master.d2nonk2ulem6e4.amplifyapp.com/">
+        <strong>Tattoo Studio</strong>
+    </a>🚀
+</div>
 
 
 ## Views
