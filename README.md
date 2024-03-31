@@ -95,23 +95,23 @@ Landing
 <div>
 <img style="width:48%" src="./src/img/02-Landing_user.png">
 <img style="width:48%" src="./src/img/03-Landing_admin.png">
-</div>
+</div><br/>
 
 
 Register / Login
 <div>
 <img style="width:48%" src="./src/img/04-Register.png">
 <img style="width:48%" src="./src/img/05-Login.png">
-</div>
+</div><br/>
 
 See profile / Edit profile
 <div>
-<img src="./src/img/08-Profile.png">
-<img src="./src/img/09-Profile_editable.png">
-</div>
+<img style="width:48%" src="./src/img/08-Profile.png">
+<img style="width:48%" src="./src/img/09-Profile_editable.png">
+</div><br/>
 
 Appointments
-<img src="./src/img/06-Appointments_view.png">
+<img src="./src/img/06-Appointments_view.png"><br/>
 
 Admin
 <img src="./src/img/07-Admin_view.png">
@@ -120,14 +120,21 @@ Admin
 
 ## Future improvements
 ⬜️ Appointment detail view
-Appointment CRUD for Admin
-Edit appointments as user (create, get and delete is done)
-Add avatar/picture to profile
+
+⬜️ Appointment CRUD for Admin
+
+⬜️ Edit appointments as user (create, get and delete are done ✅)
+
+⬜️ Add avatar/picture to profile
 
 ⬜️ See an specific user (as Admin)
+
 ⬜️ Update user (as Admin)
+
 ⬜️ ( in progress ) Services CRUD (as Admin)
+
 ✅ ( partially❗️) Data validation (check all data format before sending it to the back-end...)
+
 ✅ ( partially❗️) Error handling (displaying helpful messages when an error occurs, both form-filling related errors and back-end failed requests/responses)
 
 ## Contributions
