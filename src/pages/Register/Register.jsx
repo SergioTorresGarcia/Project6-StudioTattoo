@@ -106,7 +106,7 @@ export const Register = () => {
                     className={`inputDesign ${userError.birth_dateError !== "" ? "inputDesignError" : ""
                         }`}
                     type={"text"}
-                    placeholder={"YYY-MM-DD"}
+                    placeholder={"YYYY-MM-DD"}
                     name={"birth_date"}
                     value={user.birth_date || ""}
                     onChangeFunction={(e) => inputHandler(e)}
