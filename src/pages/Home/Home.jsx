@@ -118,11 +118,11 @@ export const Home = () => {
                             description={item.description}
 
                             // there are only a few pics that repeat periodically
-                            imageUrl={`/src/img/s${item.id <= 4 ? item.id : item.id % 4}.png`}
+                            imageUrl={`../img/s${item.id <= 4 ? item.id : item.id % 4}.png`}
                         />
                     ))}
                 </div>
-                <img className="cover" src="/img/tattooCover.png" alt="Web cover picture. Heavily inked arm in blueish colors" />
+                <img className="cover" src="../img/tattooCover.png" alt="Web cover picture. Heavily inked arm in blueish colors" />
             </div>
         </>
     )
