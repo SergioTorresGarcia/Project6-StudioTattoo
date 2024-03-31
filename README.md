@@ -5,7 +5,7 @@ A front-end site based on project number 4 of the bootcamp (<a href="https://git
 
 <img src="./src/img/tattooCover.png" alt="Web cover picture. Heavily inked arm in blueish colors" />
 <br/><br/>
-FRONT-END STACK: <br/><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /><img src= "https://img.shields.io/badge/javascipt-EFD81D?style=for-the-badge&logo=javascript&logoColor=black"/><img src= "https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
+FRONT-END STACK:<br/><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /><img src= "https://img.shields.io/badge/javascipt-EFD81D?style=for-the-badge&logo=javascript&logoColor=black" alt="Docker" /><img src= "https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
 
 
 BACK-END STACK:<br/><img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" /><img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /><img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge" alt="Express.js"/><img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" /><img src="https://img.shields.io/badge/DOCKER-2020BF?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
@@ -69,6 +69,7 @@ The proposed exercise is to create a front-end site connecting to the Tattoo Stu
 3.  Connect repository with database 
 4.  `$ npm run dev`
 <br/>
+
 ###### ⚠️ Since we will be fetching information from our own API from a previous project, here is how to install the back-end project and how to populate seeders - in case you run out of items to delete :) 
 
 1.  Clone <a href="https://github.com/SergioTorresGarcia/Proyecto4-Buscador" target="-blank">this repository</a>
