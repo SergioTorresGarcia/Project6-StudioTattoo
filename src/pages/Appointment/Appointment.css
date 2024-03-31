@@ -1,10 +1,59 @@
-.appointmentDesign {
-    height: 86.5vh;
-    width: 100vw;
-
-    display: flex;
+.appPage {
+    display: inline-flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.appointmentDesign {
+
+    height: 86.5vh;
+    width: 70vw;
+
+    overflow: hidden;
+    overflow: scroll;
+
+    display: inline-flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    color: black
+}
+
+.formAppointment {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 1em;
+    padding-right: 1em;
+    align-items: center;
+    border-right: 0.075em solid teal;
+}
+
+.dropdownDesign,
+.appBtn {
+    min-height: 2em;
+    width: 19.5em;
+
+    border: 0.02em solid teal;
+    border-radius: 0.5em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: teal;
+    color: gainsboro;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 2em;
+}
+
+.dropdownDesign {
+    background-color: gainsboro;
+    color: teal;
 }

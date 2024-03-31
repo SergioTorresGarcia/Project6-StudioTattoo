@@ -6,14 +6,12 @@
     border-radius: 0.5em;
     background-color: #e9e3e3;
     color: black;
-    margin: 3em 2em 0 2em;
+    margin: 1em 1em 0 1em;
     padding: 1em;
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-
+    justify-content: space-between;
     transition: 0.2s;
 }
 
@@ -26,30 +24,22 @@
 
 .serviceName {
     color: teal;
-
     margin-bottom: 1em;
-
 }
-
-serviceDay {
-    margin-top: 1em;
-    color: black;
-    font-weight: bold;
-
-}
-
-serviceTime {
-    margin-top: 1em;
-    color: black;
-    font-weight: bold;
-
-}
-
 
 .btnApp {
-    color: darkred;
     display: flex;
     flex-direction: row;
     justify-content: center;
+
+}
+
+.btnRed {
+    color: darkred;
+    margin: 0.5em;
+}
+
+.btnGreen {
+    color: darkolivegreen;
     margin: 0.5em;
 }

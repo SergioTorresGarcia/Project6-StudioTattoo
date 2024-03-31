@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
 import { Navigator } from "../Navigator/Navigator";
+import { useState } from "react";
 
 export const Header = () => {
     const navigate = useNavigate();
@@ -11,33 +12,45 @@ export const Header = () => {
         localStorage.removeItem("passport");
         navigate("/login");
     }
+    const datosUser = JSON.parse(localStorage.getItem("passport"));
 
+    const [role, setRole] = useState(datosUser?.decodificado.roleName);
+
+
+    //${isActive ? 'btnActive' : ''}
     return (
         <div className="headerDesign">
-            <div className="btn">
+            <div className={`navigatorDesign btn`}>
                 <Navigator title={"HOME"} destination={"/"} />
             </div>
-
+            <div className="navigatorDesign btn">
+                {
+                    role === "superadmin"
+                        ? <Navigator title={"Admin zone"} destination={"/admin"} />
+                        : null
+                }
+            </div>
+            {/* //` */}
             {passport?.token ? (
                 <div className="authMenu">
-                    <div className="btn">
+                    <div className="navigatorDesign btn">
                         <Navigator title={`Hey, ${passport?.decodificado?.userName}!`} destination={"/profile"} />
                     </div>
 
-                    <div className="btn">
-                        <Navigator title={"Mis citas"} destination={"/appointments/profile"} />
+                    <div className="navigatorDesign btn">
+                        <Navigator title={"My appointments"} destination={"/appointments/profile"} />
                     </div>
 
-                    <div className="btn" onClick={logOut}>
+                    <div className="navigatorDesign btn" onClick={logOut}>
                         <Navigator title={"Log out"} destination={"/"} />
                     </div>
                 </div>
             ) : (
                 <div className="authMenu">
-                    <div className="btn">
+                    <div className="navigatorDesign btn">
                         <Navigator title={"Register"} destination={"/register"} />
                     </div>
-                    <div className="btn">
+                    <div className="navigatorDesign btn">
                         <Navigator title={"Login"} destination={"/login"} />
                     </div>
                 </div>

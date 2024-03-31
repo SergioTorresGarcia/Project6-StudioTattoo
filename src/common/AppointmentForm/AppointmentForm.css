@@ -1,0 +1,36 @@
+.appointment-form {
+    color: teal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+colorTeal {
+    border: 0.02em solid teal;
+    width: 19.5em;
+    margin-top: 0.5em;
+    padding: 0.5em;
+
+}
+
+input {
+    color: teal;
+    border: 0.02em solid teal;
+    background-color: gainsboro;
+    border-radius: 0.5em;
+    transform: scale(1.5);
+
+    margin: 1.5em;
+}
+
+.daypickerDesign {
+
+    border: 0.02em solid teal;
+    border-radius: 0.5em;
+    color: teal;
+    background-color: gainsboro;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}

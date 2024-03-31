@@ -6,14 +6,13 @@
     margin: 1em;
 }
 
-.btn:hover {
-    background-color: gainsboro;
-}
-
-.navigatorDesign:hover,
-.active {
-
+.navigatorDesign:hover {
     color: teal;
     transition: 0.2s;
     cursor: pointer;
+
+}
+
+.btnActive {
+    color: teal;
 }

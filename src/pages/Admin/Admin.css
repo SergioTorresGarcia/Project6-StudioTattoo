@@ -1,0 +1,154 @@
+/* //////////////////////////////////////////////////////////// general /// */
+.adminDesign {
+    min-height: 86.5vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+/* //////////////////////////////////////////////////////////// table parts /// */
+.table {
+    width: 90vw;
+    height: fit-content;
+    border: 0.075em solid teal;
+    border-radius: 0.5em;
+    background-color: #e9e3e3;
+    margin: 1em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.thead {
+    display: flex;
+    justify-content: flex-start;
+    color: teal;
+    border: 0.075em solid teal;
+    background-color: rgba(0, 128, 128, 0.197);
+    height: 3em;
+    margin-bottom: 1em;
+}
+
+.tbody {
+    background-color: rgba(0, 128, 128, 0.197);
+    border: 0.075em solid teal;
+}
+
+.div {
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+}
+
+.grayBg {
+    background-color: gainsboro;
+}
+
+.tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+/* //////////////////////////////////////////////////////////// fields /// */
+.pos,
+.name,
+.birth,
+.email,
+.role,
+.del,
+.title,
+.description,
+.image {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.pos {
+    width: 3vw;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1em;
+}
+
+.name,
+.title,
+.img {
+    width: 20vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.img {
+    margin-left: 5em;
+}
+
+.role {
+    width: 25vw;
+}
+
+.name {
+    width: 13em;
+}
+
+
+.email,
+.birth,
+.role,
+.description {
+    display: flex;
+    justify-content: center;
+}
+
+.email,
+.birth {
+    width: 18vw;
+}
+
+.description {
+    width: 40vw;
+}
+
+/* //////////////////////////////////////////////////////////// buttons /// */
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.2em;
+}
+
+.del {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: darkred;
+}
+
+.edit {
+    width: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: teal;
+}
+
+.image {
+    height: 7em;
+    width: 15vw;
+    transform: scale(0.15);
+}

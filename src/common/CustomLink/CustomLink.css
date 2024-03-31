@@ -4,6 +4,8 @@
 
     margin: 1em;
     transition: 0.5s;
+    display: flex;
+    justify-content: flex-start;
 }
 
 .linkDesign:hover {

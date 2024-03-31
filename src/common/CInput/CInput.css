@@ -17,6 +17,10 @@
     background-color: whitesmoke;
 }
 
+.inputDesign::placeholder {
+    color: grey;
+}
+
 .inputDesignError {
     border: 0.02em solid darkred;
     background-color: gainsboro;
@@ -24,4 +28,9 @@
 
 .error {
     color: darkred
+}
+
+.borderEdit {
+    border: 0.075em solid teal;
+    background-color: whitesmoke;
 }

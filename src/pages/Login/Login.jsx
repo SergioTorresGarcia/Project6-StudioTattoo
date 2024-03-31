@@ -89,10 +89,11 @@ export const Login = () => {
         <>
             <Header />
             <div className="loginDesign">
+                <label className="tealColor">Your e-mail:</label>
                 <CInput
                     className={`inputDesign ${credencialesError.emailError !== "" ? "inputDesignError" : ""}`}
                     type={"email"}
-                    placeholder={"email"}
+                    placeholder={"example@domain.com"}
                     name={"email"}
                     disabled={""}
                     value={credenciales.email || ""}
@@ -100,11 +101,12 @@ export const Login = () => {
                     onBlurFunction={(e) => checkError(e)}
                 />
                 <div className="error">{credencialesError.emailError}</div>
+                <label className="tealColor">Your password:</label>
                 <CInput
                     className={`inputDesign ${credencialesError.passwordError !== "" ? "inputDesignError" : ""
                         }`}
                     type={"password"}
-                    placeholder={"password"}
+                    placeholder={"8-14 characters (incl.: small, big letters and numbers)"}
                     name={"password"}
                     disabled={""}
                     value={credenciales.password || ""}

@@ -1,0 +1,26 @@
+.dropdownDesign {
+    min-height: 3em;
+    width: 19.5em;
+
+    border: 0.02em solid teal;
+    border-radius: 0.5em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+
+    margin: 1em;
+
+    color: teal;
+    background-color: gainsboro;
+    font-weight: bold;
+    font-size: medium;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.dropdownDesign:hover {
+    background-color: gainsboro;
+    cursor: pointer;
+}

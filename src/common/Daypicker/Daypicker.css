@@ -1,0 +1,15 @@
+.daypickerDesign {
+
+    border: 0.02em solid teal;
+    border-radius: 0.5em;
+    color: teal;
+    background-color: gainsboro;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.tealColor {
+    color: teal;
+}

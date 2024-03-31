@@ -11,7 +11,6 @@ export const RegisterUser = async (user) => {
 
     try {
         const response = await fetch(`${root}auth/register`, options);
-
         const data = await response.json();
 
         if (!data.success) {
@@ -51,11 +50,9 @@ export const LoginUser = async (credenciales) => {
     }
 };
 
-
 export const GetServices = async () => {
     try {
         const response = await fetch(`${root}services`);
-        console.log(response);
         const data = await response.json();
 
         if (!data.success) {
@@ -65,6 +62,27 @@ export const GetServices = async () => {
         return data;
     } catch (error) {
         throw new Error('Get services failed: ' + error.message);
+    }
+};
+
+export const CreateService = async (tokenStorage, serviceData) => {
+    try {
+        const response = await fetch(`${root}services`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${tokenStorage}`
+            },
+            body: JSON.stringify(serviceData)
+        });
+        if (!response.ok) {
+            throw new Error('Failed to create service');
+        }
+        console.log("service created");
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw new Error('Create service failed: ' + error.message);
     }
 };
 
@@ -94,34 +112,29 @@ export const GetProfile = async (token) => {
     }
 };
 
-
-export const UpdateProfile = async (token, data) => {
+export const UpdateProfile = async (token, user) => {
     const options = {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(user)
     };
-    console.log("data", data);
     try {
         const response = await fetch(`${root}users/self`, options);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        console.log(response);
-        const data = await response.json();
-        if (!data.success) {
-            throw new Error(data.message);
+        const responseData = await response.json();
+        if (!responseData.success) {
+            throw new Error(responseData.message);
         }
-        console.log(data);
-        return data;
+        return responseData;
     } catch (error) {
         throw new Error('Update profile failed: ' + error.message);
     }
 };
-
 
 export const GetAppointments = async (token) => {
     const options = {
@@ -149,24 +162,144 @@ export const GetAppointments = async (token) => {
     }
 };
 
-// export const GetAppointments = async (token) => {
-//     try {
-//         // Adjust the URL as per your backend API endpoint
-//         const response = await fetch(`${root}appointments/profile`, {
-//             method: 'GET',
-//             headers: {
-//                 'Authorization': `Bearer ${token}`, // Assuming token is required for authentication
-//                 'Content-Type': 'application/json'
-//             }
-//         });
+export const DeleteAppointment = async (token, id) => {
+    const options = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+    }
+    try {
+        const response = await fetch(`${root}appointments/${id}`, options)
+        if (!response.ok) {
+            throw new Error('Failed to delete appointment: ' + response.statusText);
+        }
 
-//         if (!response.ok) {
-//             throw new Error('Failed to fetch appointments');
-//         }
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('Failed to delete appointment: ' + data.message);
+        }
+        return data;
 
-//         const data = await response.json();
-//         return data; // Assuming the response data contains appointments array
-//     } catch (error) {
-//         throw new Error('Failed to fetch appointments: ' + error.message);
-//     }
-// };
+    } catch (error) {
+        throw new Error('Delete appointment failed: ' + error.message);
+    }
+}
+
+export const UpdateAppointment = async (token, id, body) => {
+    const options = {
+        method: "UPDATE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+    }
+    try {
+        const response = await fetch(`${root}appointments/${id}`, options)
+        if (!response.ok) {
+            throw new Error('Failed to update appointment: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('Failed to delete appointment: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Delete appointment failed: ' + error.message);
+    }
+}
+
+export const CreateAppointment = async (token, appointmentData) => {
+    try {
+        const response = await fetch(`${root}appointments`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(appointmentData)
+        });
+        if (!response.ok) {
+            throw new Error('Failed to create appointment');
+        }
+        console.log("appointment created");
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        throw new Error('Failed creating appointment', error.message);
+    }
+};
+
+export const GetUsers = async (token) => {
+    try {
+        const response = await fetch(`${root}users`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const fetched = await response.json();
+        const data = fetched.data
+        return data;
+    } catch (error) {
+        throw new Error('Get users failed APICALLS.JS: ' + error.message);
+    }
+};
+
+export const DeleteUser = async (token, id) => {
+    const options = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    }
+    try {
+        const response = await fetch(`${root}users/${id}`, options)
+        if (!response.ok) {
+            throw new Error('Failed to delete user: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('Failed to delete user: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Delete user failed: ' + error.message);
+    }
+}
+
+export const DeleteService = async (token, id) => {
+    const options = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    }
+    try {
+        const response = await fetch(`${root}services/${id}`, options)
+        if (!response.ok) {
+            throw new Error('Failed to delete service: ' + response.statusText);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+            throw new Error('Failed to delete service: ' + data.message);
+        }
+        return data;
+
+    } catch (error) {
+        throw new Error('Delete service failed: ' + error.message);
+    }
+}

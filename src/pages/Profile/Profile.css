@@ -2,12 +2,18 @@
     height: 86.5vh;
     width: 100vw;
 
-
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.tealText {
+    color: teal;
+}
+
+.inputDesign {
+    margin: 2.5em;
 }
 
 .loader {

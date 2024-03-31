@@ -1,6 +1,5 @@
 .headerDesign {
-
-    height: 7.5vh;
+    height: 7.2vh;
     width: 100vw;
 
     background-color: lightgray;
@@ -8,7 +7,6 @@
 
     display: flex;
     flex-direction: row;
-    /* justify-content: flex-end; */
     align-items: flex-end;
     justify-content: space-between;
 
@@ -17,21 +15,4 @@
 .authMenu {
     display: flex;
     flex-direction: row;
-
-}
-
-.logo {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-}
-
-.logo:hover {
-    cursor: pointer;
-}
-
-.spacer {
-    flex-grow: 1;
-    /* Allow the spacer to grow to take up remaining space */
 }

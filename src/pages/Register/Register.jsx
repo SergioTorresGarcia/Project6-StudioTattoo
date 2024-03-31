@@ -73,56 +73,65 @@ export const Register = () => {
         <>
             <Header />
             <div className="registerDesign">
-                {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
+                {/* <pre>{JSON.stringify(user, null, 2)}</pre> HELP DURING DEV - preview of the body */}
+                <label className="tealColor">First name:</label>
                 <CInput
-                    className={`inputDesign ${userError.nameError !== "" ? "inputDesignError" : ""
+                    className={`inputDesign ${userError.first_nameError !== "" ? "inputDesignError" : ""
                         }`}
                     type={"text"}
-                    placeholder={"first name"}
+                    placeholder={""}
                     name={"first_name"}
                     value={user.first_name || ""}
                     onChangeFunction={(e) => inputHandler(e)}
                     onBlurFunction={(e) => checkError(e)}
                 />
-                <div className="error">{userError.nameError}</div>
+                <div className="error">{userError.first_nameError}</div>
+
+                <label className="tealColor">Last name:</label>
                 <CInput
-                    className={`inputDesign ${userError.nameError !== "" ? "inputDesignError" : ""
+                    className={`inputDesign ${userError.last_nameError !== "" ? "inputDesignError" : ""
                         }`}
                     type={"text"}
-                    placeholder={"last name"}
+                    placeholder={""}
                     name={"last_name"}
                     value={user.last_name || ""}
                     onChangeFunction={(e) => inputHandler(e)}
                     onBlurFunction={(e) => checkError(e)}
                 />
-                <div className="error">{userError.nameError}</div>
+                <div className="error">{userError.last_nameError}</div>
+
+
+                <label className="tealColor">Date of birth:</label>
                 <CInput
-                    className={`inputDesign ${userError.dateError !== "" ? "inputDesignError" : ""
+                    className={`inputDesign ${userError.birth_dateError !== "" ? "inputDesignError" : ""
                         }`}
                     type={"text"}
-                    placeholder={"birth date"}
+                    placeholder={"YYY-MM-DD"}
                     name={"birth_date"}
                     value={user.birth_date || ""}
                     onChangeFunction={(e) => inputHandler(e)}
                     onBlurFunction={(e) => checkError(e)}
                 />
-                <div className="error">{userError.dateError}</div>
+                <div className="error">{userError.birth_dateError}</div>
+
+                <label className="tealColor">E-mail address:</label>
                 <CInput
                     className={`inputDesign ${userError.emailError !== "" ? "inputDesignError" : ""
                         }`}
                     type={"email"}
-                    placeholder={"email"}
+                    placeholder={"example@domain.com"}
                     name={"email"}
                     value={user.email || ""}
                     onChangeFunction={(e) => inputHandler(e)}
                     onBlurFunction={(e) => checkError(e)}
                 />
                 <div className="error">{userError.emailError}</div>
+                <label className="tealColor">Password:</label>
                 <CInput
                     className={`inputDesign ${userError.passwordError !== "" ? "inputDesignError" : ""
                         }`}
                     type={"password"}
-                    placeholder={"password"}
+                    placeholder={"8-14 characters (incl.: small, big letters and numbers)"}
                     name={"password"}
                     value={user.password || ""}
                     onChangeFunction={(e) => inputHandler(e)}
