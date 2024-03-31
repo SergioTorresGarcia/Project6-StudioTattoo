@@ -38,7 +38,7 @@ export const Header = () => {
                     </div>
 
                     <div className="navigatorDesign btn">
-                        <Navigator title={"Mis citas"} destination={"/appointments/profile"} />
+                        <Navigator title={"My appointments"} destination={"/appointments/profile"} />
                     </div>
 
                     <div className="navigatorDesign btn" onClick={logOut}>

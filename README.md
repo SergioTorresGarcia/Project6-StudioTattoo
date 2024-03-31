@@ -91,17 +91,32 @@ The proposed exercise is to create a front-end site connecting to the Tattoo Stu
 
 ## Views
 Landing
-<img src="./images/landing.png">  
-Register
-<img src="./images/register.png">
-Login
-<img src="./images/login.png">
-Profile
-<img src="./images/profile.png">
-Routines
-<img src="./images/routines.png">
-Exercices
-<img src="./images/exercises.png">
+<img src="./src/img/01-Landing_public.png">
+<div>
+<img style="width:48%" src="./src/img/02-Landing_user.png">
+<img style="width:48%" src="./src/img/03-Landing_admin.png">
+</div>
+
+
+Register / Login
+<div>
+<img style="width:48%" src="./src/img/04-Register.png">
+<img style="width:48%" src="./src/img/05-Login.png">
+</div>
+
+See profile / Edit profile
+<div>
+<img src="./src/img/08-Profile.png">
+<img src="./src/img/09-Profile_editable.png">
+</div>
+
+Appointments
+<img src="./src/img/06-Appointments_view.png">
+
+Admin
+<img src="./src/img/07-Admin_view.png">
+
+
 
 ## Future improvements
 ⬜️ Appointment detail view
