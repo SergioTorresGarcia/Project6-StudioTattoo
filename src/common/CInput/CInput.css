@@ -17,6 +17,10 @@
     background-color: whitesmoke;
 }
 
+.inputDesign::placeholder {
+    color: grey;
+}
+
 .inputDesignError {
     border: 0.02em solid darkred;
     background-color: gainsboro;

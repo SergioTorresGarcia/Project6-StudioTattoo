@@ -122,6 +122,7 @@ export const Home = () => {
                         />
                     ))}
                 </div>
+                <img className="cover" src="./src/img/tattooCover.png" alt="Web cover picture. Heavily inked arm in blueish colors" />
             </div>
         </>
     )

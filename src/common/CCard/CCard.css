@@ -16,6 +16,7 @@
     align-items: center;
 
     transition: 0.2s;
+    z-index: 2;
 }
 
 .card:hover {

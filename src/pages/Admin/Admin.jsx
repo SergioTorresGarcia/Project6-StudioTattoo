@@ -123,13 +123,13 @@ export const Admin = () => {
                                     <td className="birth">{dayjs(user.birthDate).format("YYYY-MM-DD")}</td>
                                     <td className="email">{user.email}</td>
                                     <td className="role">{user.role.name}</td>
-                                    <td className="">
+                                    <td className="buttons">
                                         <button className="del" onClick={() => deleteUser(user.id)}>delete</button>
                                     </td>
 
-                                    <td className="">
+                                    {/* <td className="">
                                         <button className="edit" onClick={() => editUser(user.id)}>edit</button>
-                                    </td>
+                                    </td> */}
                                 </div>
                             ))}
                         </tbody>
@@ -152,15 +152,15 @@ export const Admin = () => {
                                     <td className="pos">{rowNumbers2[index]}</td>
                                     <td className="title">{service.serviceName}</td>
                                     <td className="description">{service.description}</td>
-                                    <td className="image"><img src={`./src/img/s${service.id}.png`} alt={service.id} /></td>
+                                    <td className="image"><img src={`./src/img/s${service.id <= 4 ? service.id : service.id % 4}.png`} alt={service.id} /></td>
 
-                                    <td className="">
+                                    <td className="buttons">
 
                                         <button className="del" onClick={() => deleteService(service.id)}>delete</button>
                                     </td>
-                                    <td className="">
+                                    {/* <td className="">
                                         <button className="edit" onClick={() => editService(service.id)}>edit</button>
-                                    </td>
+                                    </td> */}
                                 </div>
                             ))}
 
