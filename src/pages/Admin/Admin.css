@@ -105,7 +105,8 @@
     width: 25vw;
 }
 
-.name {
+.name,
+.image {
     width: 13em;
 }
 
@@ -119,12 +120,13 @@
 }
 
 .email,
-.birth {
+.birth,
+.image {
     width: 18vw;
 }
 
 .description {
-    width: 60vw;
+    width: 40vw;
 }
 
 /* //////////////////////////////////////////////////////////// buttons /// */

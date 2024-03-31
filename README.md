@@ -62,6 +62,8 @@ The proposed exercise is to create a front-end site connecting to the Tattoo Stu
 ✅ See and delete users (as Admin)
 
 ##### Extras:
+✅ Service detail view
+
 ⬜️ Appointment detail view
 
 ⬜️ See an specific user (as Admin)

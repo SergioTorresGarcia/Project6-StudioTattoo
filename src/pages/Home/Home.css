@@ -51,7 +51,6 @@ input::placeholder {
 .newServiceBtn:hover {
     border: 0.15em solid teal;
     cursor: pointer;
-    /* transform: scale(1.1); */
     transition: 0.2s;
 }
 
@@ -61,5 +60,4 @@ input::placeholder {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-
 }

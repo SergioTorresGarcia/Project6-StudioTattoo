@@ -64,6 +64,24 @@ export const GetServices = async () => {
         throw new Error('Get services failed: ' + error.message);
     }
 };
+export const GetServiceDetails = async (id) => {
+    try {
+        const response = await fetch(`${root}services/${id}`);
+        const details = await response.json();
+        console.log(id);
+        console.log(details);
+        console.log(details.data);
+        console.log(details.data.serviceName);
+        if (!details.success) {
+            throw new Error(details.message);
+        }
+
+        return details.data;
+    } catch (error) {
+        throw new Error('Get services failed: ' + error.message);
+    }
+};
+
 
 export const CreateService = async (tokenStorage, serviceData) => {
     try {

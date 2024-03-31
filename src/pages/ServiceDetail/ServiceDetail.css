@@ -1,0 +1,57 @@
+.serviceDetailDesign {
+    min-height: 86.5vh;
+    width: 100vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.details {
+    height: 20em;
+    width: 50em;
+
+    border: 0.075em solid teal;
+    border-radius: 0.5em;
+    background-color: #e9e3e3;
+    color: teal;
+    /* font-weight: bold; */
+
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.textDetail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2em;
+}
+
+.allDetail {
+    display: flex;
+    flex-direction: row;
+}
+
+.imageDetail {
+    height: 15em;
+    margin: 2em 0 2em 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.colorGrey {
+    color: grey;
+    font-size: medium;
+}
