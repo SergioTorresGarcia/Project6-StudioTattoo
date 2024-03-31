@@ -171,7 +171,6 @@ export const Admin = () => {
                                 <th className="pos">#</th>
                                 <th className="title">SERVICES:</th>
                                 <th className="description">Description</th>
-                                <th className="img">image</th>
                             </tr>
                         </thead>
                         <tbody className="tbody">

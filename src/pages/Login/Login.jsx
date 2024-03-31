@@ -61,7 +61,6 @@ export const Login = () => {
                     throw new Error("All fields are required");
                 }
             }
-            console.log("credenciales", credenciales);
             const fetched = await LoginUser(credenciales);
             const decodificado = decodeToken(fetched.token);
 
@@ -83,7 +82,6 @@ export const Login = () => {
             setMsgError(error.message);
         }
     };
-
 
     return (
         <>

@@ -8,19 +8,24 @@ export const Header = () => {
     const navigate = useNavigate();
     const passport = JSON.parse(localStorage.getItem("passport"));
 
+    const [selectedButton, setSelectedButton] = useState(""); // State to track the selected button
+
+    // Function to handle button selection
+    const handleButtonClick = (title) => {
+        setSelectedButton(title); // Update selected button state
+    };
+
     const logOut = () => {
         localStorage.removeItem("passport");
         navigate("/login");
     }
     const datosUser = JSON.parse(localStorage.getItem("passport"));
-
     const [role, setRole] = useState(datosUser?.decodificado.roleName);
 
-
-    //${isActive ? 'btnActive' : ''}
     return (
         <div className="headerDesign">
-            <div className={`navigatorDesign btn`}>
+
+            <div className="navigatorDesign">
                 <Navigator title={"HOME"} destination={"/"} />
             </div>
             <div className="navigatorDesign btn">

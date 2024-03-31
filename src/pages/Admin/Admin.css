@@ -93,6 +93,10 @@
     align-items: center;
 }
 
+.name {
+    width: 5vw;
+}
+
 .img {
     margin-left: 5em;
 }
@@ -120,7 +124,7 @@
 }
 
 .description {
-    width: 40vw;
+    width: 60vw;
 }
 
 /* //////////////////////////////////////////////////////////// buttons /// */
