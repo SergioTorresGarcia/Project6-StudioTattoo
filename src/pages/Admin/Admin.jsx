@@ -9,7 +9,7 @@ import { Pagination } from "../../common/Pagination/Pagination";
 
 const numUserDisplay = 5;
 const numServiceDisplay = 2;
-const numAppointmentDisplay = 3;
+const numAppointmentDisplay = 15;
 
 export const Admin = () => {
 
@@ -106,7 +106,7 @@ export const Admin = () => {
     // Appointments indexes ordered (as ids might be not continuous when some are deleted
     useEffect(() => {
         const numbers3 = appointments.map((_, index) => index + 1);
-        setRowNumbers2(numbers3);
+        setRowNumbers3(numbers3);
     }, [appointments]);
 
 
@@ -179,10 +179,11 @@ export const Admin = () => {
                 <div>
                     {/* USERS */}
                     <table className="table">
+                        <div className="div"> USERS: there are a total of {users.length} entries</div>
                         <thead className="thead">
-                            <tr className="tr">
+                            <tr className="tr th">
                                 <th className="pos">#</th>
-                                <th className="name">USERS: surname, name</th>
+                                <th className="name">Surname, Name</th>
                                 <th className="birth">Date of birth</th>
                                 <th className="email">e-mail address</th>
                                 <th className="role">Role</th>
@@ -216,13 +217,13 @@ export const Admin = () => {
 
                     {/* SERVICES */}
                     <table className="table">
+                        <div className="div"> SERVICES: there are a total of {services.length} entries</div>
                         <thead className="thead">
-                            <tr className="tr">
+                            <tr className="tr th">
                                 <th className="pos">#</th>
-                                <th className="title">SERVICES:</th>
+                                <th className="title">Title</th>
                                 <th className="description">Description</th>
                                 <th className="image">image</th>
-                                {/* <th className="pos">action</th> */}
                             </tr>
                         </thead>
                         <tbody className="tbody">
@@ -251,25 +252,32 @@ export const Admin = () => {
 
                     {/* APPOINTMENTS */}
                     <table className="table">
+                        <div className="div"> APPOINTMENTS: there are a total of {appointments.length} entries</div>
                         <thead className="thead">
-                            <tr className="tr">
+                            <tr className="tr th">
                                 <th className="pos">#</th>
-                                <th className="id">APPOINTMENTS:</th>
-                                <th className="service">Service id</th>
-                                <th className="user">User id</th>
+                                <th className="pos">Id</th>
+                                <th className="service">Service</th>
+                                <th className="userid">User</th>
                                 <th className="day">Date of appointment</th>
-                                <th className="time">Hour of appointment</th>
+                                <th className="time">Hour</th>
                             </tr>
                         </thead>
                         <tbody className="tbody">
                             {currentAppointments.map((appointment, index) => (
-
                                 <div className={`div ${rowNumbers3[index] % 2 == 0 ? "grayBg" : ""}`} key={appointment.id}>
                                     <td className="pos">{rowNumbers3[index]}</td>
-                                    <td className="id">{appointment.id}</td>
-                                    <td className="service">{appointment.serviceId}</td>
-                                    <td className="user">{appointment.userId}</td>
-                                    <td className="day">{dayjs(appointment.appointmentDate).format("YYYY-MM-DD")}</td>
+                                    <td className="pos">ref.{appointment.id}</td>
+
+                                    <td className="service">{services.find(service => service.id === appointment.serviceId)?.serviceName}</td>
+                                    {/* <td className="user">UserId = {appointment.userId}</td> */}
+
+                                    <td className="user">
+                                        (id={appointment.userId}){" "}{users.find(user => user.id === appointment.userId)?.lastName},{" "}{users.find(user => user.id === appointment.userId)?.firstName}
+
+                                    </td>
+
+                                    <td className="day">{dayjs(appointment.appointmentDate).format("ddd YYYY-MM-DD")}</td>
                                     <td className="time">{dayjs(appointment.appointmentDate).format("HH:MM")}</td>
 
                                     <td className="buttons">

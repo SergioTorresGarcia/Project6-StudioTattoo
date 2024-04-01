@@ -47,6 +47,13 @@
 
 }
 
+.th {
+    color: teal;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
 .grayBg {
     background-color: gainsboro;
 }
@@ -66,6 +73,7 @@
 .id,
 .service,
 .user,
+.userid,
 .day,
 .time {
     display: flex;
@@ -89,23 +97,28 @@
     align-items: center;
 }
 
-.name,
-.user,
-.service {
+.name {
     width: 8vw;
+}
+
+.userid {
+    width: 10vw;
 }
 
 .img {
     margin-left: 5em;
 }
 
-.role {
+.role,
+.user,
+.day {
     width: 25vw;
 }
 
 .name,
 .id,
-.image {
+.image,
+.time {
     width: 13em;
 }
 
@@ -120,14 +133,13 @@
 
 .email,
 .birth,
-.image,
-.day,
-.time {
+.image {
     width: 18vw;
 }
 
-.description {
-    width: 40vw;
+.description,
+.service {
+    width: 30vw;
 }
 
 /* //////////////////////////////////////////////////////////// buttons /// */
