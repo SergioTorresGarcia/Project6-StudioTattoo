@@ -64,13 +64,17 @@ The proposed exercise is to create a front-end site connecting to the Tattoo Stu
 ##### Extras:
 ✅ Service detail view
 
+✅ See and delete services (as Admin)
+
+⬜️ ( in progress ) create and update services (as Admin)
+
+✅ See and delete appointments (as Admin)
+
 ⬜️ Appointment detail view
 
 ⬜️ See an specific user (as Admin)
 
 ⬜️ Update user (as Admin)
-
-⬜️ ( in progress ) Services CRUD (as Admin)
 
 ✅ ( partially❗️) Data validation (check all data format before sending it to the back-end...)
 
@@ -134,6 +138,10 @@ Admin
 
 
 ## Future improvements
+✅ See and delete services (as Admin)
+
+✅ See and delete appointments (as Admin)
+
 ⬜️ Appointment detail view
 
 ⬜️ Appointment CRUD for Admin
