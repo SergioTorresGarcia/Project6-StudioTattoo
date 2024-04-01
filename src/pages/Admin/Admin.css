@@ -38,6 +38,7 @@
     border: 0.075em solid teal;
 }
 
+.tr,
 .div {
     color: black;
     display: flex;
@@ -50,17 +51,7 @@
     background-color: gainsboro;
 }
 
-.tr {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-}
 
-.tr {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-}
 
 /* //////////////////////////////////////////////////////////// fields /// */
 .pos,
@@ -71,7 +62,12 @@
 .del,
 .title,
 .description,
-.image {
+.image,
+.id,
+.service,
+.user,
+.day,
+.time {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -93,8 +89,10 @@
     align-items: center;
 }
 
-.name {
-    width: 5vw;
+.name,
+.user,
+.service {
+    width: 8vw;
 }
 
 .img {
@@ -106,6 +104,7 @@
 }
 
 .name,
+.id,
 .image {
     width: 13em;
 }
@@ -121,7 +120,9 @@
 
 .email,
 .birth,
-.image {
+.image,
+.day,
+.time {
     width: 18vw;
 }
 

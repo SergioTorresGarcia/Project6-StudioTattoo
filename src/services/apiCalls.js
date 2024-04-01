@@ -179,6 +179,26 @@ export const GetAppointments = async (token) => {
         throw new Error('Get appointments failed: ' + error.message);
     }
 };
+export const GetAllAppointments = async (token) => {
+    try {
+        const response = await fetch(`${root}appointments`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const fetched = await response.json();
+        const data = fetched.data
+        console.log(data);
+        return data;
+    } catch (error) {
+        throw new Error('Get all appointments failed: ' + error.message);
+    }
+};
 
 export const DeleteAppointment = async (token, id) => {
     const options = {
@@ -271,6 +291,7 @@ export const GetUsers = async (token) => {
         throw new Error('Get users failed APICALLS.JS: ' + error.message);
     }
 };
+
 
 export const DeleteUser = async (token, id) => {
     const options = {
