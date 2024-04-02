@@ -18,13 +18,9 @@ export const Home = () => {
         serviceName: "",
         description: "",
     });
-    const [popupVisible, setPopupVisible] = useState(false) // State to manage popup visibility
 
     useEffect(() => {
         fetchData(); // Function to fetch data
-    }, []);
-
-    useEffect(() => {
         seeDetails();
     }, [])
 
@@ -67,7 +63,6 @@ export const Home = () => {
             const responseData = await CreateService(tokenStorage, newService);
 
         } catch (error) {
-            console.log(token);
             throw new Error('Failed to create service:' + error.message);
         }
     };

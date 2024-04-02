@@ -53,32 +53,32 @@ export const LoginUser = async (credenciales) => {
 export const GetServices = async () => {
     try {
         const response = await fetch(`${root}services`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
         const data = await response.json();
-
         if (!data.success) {
             throw new Error(data.message);
         }
-
         return data;
     } catch (error) {
         throw new Error('Get services failed: ' + error.message);
     }
 };
+
 export const GetServiceDetails = async (id) => {
     try {
         const response = await fetch(`${root}services/${id}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
         const details = await response.json();
-        console.log(id);
-        console.log(details);
-        console.log(details.data);
-        console.log(details.data.serviceName);
         if (!details.success) {
             throw new Error(details.message);
         }
-
         return details.data;
     } catch (error) {
-        throw new Error('Get services failed: ' + error.message);
+        throw new Error('Get service details failed: ' + error.message);
     }
 };
 
@@ -179,6 +179,53 @@ export const GetAppointments = async (token) => {
         throw new Error('Get appointments failed: ' + error.message);
     }
 };
+
+// export const GetAppointmentDetails = async (token, id) => {
+//     const options = {
+//         method: "GET",
+//         headers: {
+//             "Content-Type": "application/json",
+//             "Authorization": `Bearer ${token}`
+//         }
+//     };
+//     try {
+//         const response = await fetch(`${root}appointments/${id}`, options);
+//         const details = await response.json();
+
+
+//         if (!details.success) {
+//             throw new Error(details.message);
+//         }
+//         localStorage.setItem("info", JSON.stringify(details.data))
+//         return details.data;
+//     } catch (error) {
+//         throw new Error('Get appointments failed: ' + error.message);
+//     }
+// };
+export const GetAppointmentDetails = async (token, id) => {
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    };
+    try {
+        const response = await fetch(`${root}appointments/${id}`, options);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const details = await response.json();
+        if (!details.success) {
+            throw new Error(details.message);
+        }
+        localStorage.setItem("info", JSON.stringify(details.data));
+        return details.data;
+    } catch (error) {
+        throw new Error('Get appointment details failed: ' + error.message);
+    }
+};
+
 export const GetAllAppointments = async (token) => {
     try {
         const response = await fetch(`${root}appointments`, {

@@ -278,7 +278,7 @@ export const Admin = () => {
                                     </td>
 
                                     <td className="day">{dayjs(appointment.appointmentDate).format("ddd YYYY-MM-DD")}</td>
-                                    <td className="time">{dayjs(appointment.appointmentDate).format("HH:MM")}</td>
+                                    <td className="time">{dayjs(appointment.appointmentDate).format("HH:mm")}</td>
 
                                     <td className="buttons">
                                         <button className="del" onClick={() => deleteAppointment(appointment.id)}>delete</button>

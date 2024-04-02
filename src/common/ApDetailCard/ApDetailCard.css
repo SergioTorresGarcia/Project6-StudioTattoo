@@ -1,0 +1,28 @@
+.cardAppDetail {
+    height: 7em;
+    width: 15em;
+
+    border: 0.075em solid teal;
+    border-radius: 0.5em;
+    background-color: #e9e3e3;
+    color: black;
+    margin: 1em 1em 0 1em;
+    padding: 1em;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.2s;
+}
+
+.cardAppDetail:hover {
+    border: 0.15em solid teal;
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+
+.serviceDetail {
+    color: teal;
+    margin-bottom: 1em;
+}

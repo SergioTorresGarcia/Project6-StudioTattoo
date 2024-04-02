@@ -2,13 +2,13 @@
 import "./ApCard.css"
 import dayjs from "dayjs"
 
-export const ApCard = ({ service, appointmentDate, onUpdate, onDelete }) => {
+export const ApCard = ({ service, appointmentDate, onUpdate, onDelete, onClick }) => {
     {/*  onUpdate, */ }
     const day = dayjs(appointmentDate).format("dddd DD-MM-YYYY");
     const hour = dayjs(appointmentDate).format("HH:mm");
 
     return (
-        <div className="">
+        <div className="" onClick={onClick}>
             <div className="cardApp">
                 <span className="serviceName">{service}</span>
                 <span>{day} <br /> at {hour} hours</span>

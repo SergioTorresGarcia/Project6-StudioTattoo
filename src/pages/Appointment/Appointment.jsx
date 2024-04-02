@@ -4,9 +4,10 @@ import { useNavigate } from "react-router";
 import { Header } from "../../common/Header/Header";
 import "./Appointment.css";
 import dayjs from "dayjs";
-import { GetAppointments, DeleteAppointment, CreateAppointment, GetServices, UpdateAppointment } from "../../services/apiCalls";
+import { GetAppointments, DeleteAppointment, CreateAppointment, GetServices, UpdateAppointment, GetAppointmentDetails } from "../../services/apiCalls";
 import { ApCard } from "../../common/ApCard/ApCard";
 import { AppointmentForm } from "../../common/AppointmentForm/AppointmentForm";
+
 
 export const Appointment = () => {
     const datosUser = JSON.parse(localStorage.getItem("passport"));
@@ -17,6 +18,7 @@ export const Appointment = () => {
     const [services, setServices] = useState([]);
     const [selectedServiceId, setSelectedServiceId] = useState('');
     const [appointment, setAppointment] = useState([]);
+    const [dataDetails, setDataDetails] = useState(null); //we get a single appointment
 
     useEffect(() => {
         if (!tokenStorage) {
@@ -26,35 +28,49 @@ export const Appointment = () => {
 
     const navigate = useNavigate();
 
-    // GETTING ALL APPOINTMENTS (needs token)
     useEffect(() => {
-        const fetchAppointments = async () => {
-            try {
-                if (!tokenStorage) {
-                    throw new Error("Token is not available");
-                }
-                const appointmentsData = await GetAppointments(tokenStorage);
-                setAppointments(appointmentsData.data)
-                setTimeout(() => { setLoadedData(true) }, 250)
-            } catch (error) {
-                throw new Error('Cannot fetch appointments:', error.message);
-            }
-        };
-        fetchAppointments();
+        fetchAppointments(); // Function to fetch appointments data
     }, [loadedData]);
 
-    // GETTING ALL SERVICES for the dropdown menu (no token needed)
     useEffect(() => {
-        const fetchServices = async () => {
-            try {
-                const servicesData = await GetServices(); //fetching function in apiCalls.js
-                setServices(servicesData.data); //we update data with the fetched response
-            } catch (error) {
-                console.error('Cannot fetch services:', error.message);
-            }
-        };
         fetchServices();
+        // seeDetailsA();
     }, []);
+
+    // GETTING ALL APPOINTMENTS (needs token)
+    const fetchAppointments = async () => {
+        try {
+            if (!tokenStorage) {
+                throw new Error("Token is not available");
+            }
+            const appointmentsData = await GetAppointments(tokenStorage);
+            setAppointments(appointmentsData.data)
+            setLoadedData(true)
+        } catch (error) {
+            throw new Error('Cannot fetch appointments:', error.message);
+        }
+    };
+    // const seeDetailsA = async (id) => {
+    //     try {
+    //         const responseDetails = await GetAppointmentDetails(tokenStorage, id);
+
+    //         const infoDetail = JSON.parse(localStorage.getItem("dataToPrint"))
+    //         console.log("infoDetail", infoDetail);
+    //         navigate(`/appointmentDetails/${id}`)
+    //     } catch (error) {
+    //         throw new Error('Cannot see appointment details:' + error.message);
+    //     }
+    // }
+
+    // GETTING ALL SERVICES for the dropdown menu (no token needed)
+    const fetchServices = async () => {
+        try {
+            const servicesData = await GetServices(); //fetching function in apiCalls.js
+            setServices(servicesData.data); //we update data with the fetched response
+        } catch (error) {
+            console.error('Cannot fetch services:', error.message);
+        }
+    };
 
     // GRABS serviceId from the dropdown menu
     const handleChange = (event) => {
@@ -134,30 +150,20 @@ export const Appointment = () => {
                             <button className="appBtn" type="submit">Create new appointment</button>
                         </form>
                     </div>
-
-                    {appointments.length === 0
-                        ? (
-                            <div>
-                                <div className="appointmentDesign">NO APPOINTMENTS BOOKED</div>
-                            </div>
-                        )
-                        : (
-                            <div className="appointmentDesign">
-                                {appointments.map((item) => (
-                                    <ApCard
-                                        key={item.id}
-                                        service={item.service.serviceName}
-                                        appointmentDate={item.appointmentDate}
-                                        // onUpdate={() => updateAppointment(item.id)}
-                                        onDelete={() => deleteAppointment(item.id)}
-                                    />
-                                ))}
-                            </div>
-                        )}
+                    <div className="appointmentDesign">
+                        {appointments.map((item) => (
+                            <ApCard
+                                key={item.id}
+                                service={item.service.serviceName}
+                                appointmentDate={item.appointmentDate}
+                                // onUpdate={() => updateAppointment(item.id)}
+                                onDelete={() => deleteAppointment(item.id)}
+                                onClick={() => navigate(`/appointmentDetails/${item.id}`)} //seeDetailsA(item.id)
+                            />
+                        ))}
+                    </div>
                 </div>
             )}
-        </div>
+        </div >
     </>);
 };
-
-
